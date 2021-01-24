@@ -5,14 +5,14 @@
   display: block;
 }
 
-.navbar .nav-item {
+.nav-item {
   margin-right: 10px;
 }
-.navbar .nav-item:hover a {
+.nav-item:hover a {
   background-color: white;
   color: rgb(49, 80, 98);
 }
-.navbar .nav-item .dropdown-menu {
+.nav-item .dropdown-menu {
   margin-top: 0;
 }
 .navbar {
@@ -34,4 +34,32 @@ a {
 
 .course-hover:hover {
   color: #f09217;
+}
+
+@media (min-width: 992px) {
+  .animate {
+    animation-duration: 0.3s;
+    -webkit-animation-duration: 0.3s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-1rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0rem);
+    opacity: 1;
+  }
+  0% {
+    transform: translateY(-1rem);
+    opacity: 0;
+  }
+}
+
+.slideIn {
+  animation-name: slideIn;
 }

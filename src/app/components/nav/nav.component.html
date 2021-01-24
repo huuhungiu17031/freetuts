@@ -9,25 +9,28 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="main_nav">
-      <ul class="navbar-nav" *ngFor="let item of $category">
+      <div class="nav-item home-icon">
+        <i class="fas fa-home text-white"></i>
+      </div>
+      <ul class="navbar-nav" *ngFor="let item of $category; first as isFirst">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+          <a class="nav-link" href="#" data-toggle="dropdown">
             {{ item.title }}
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu animate slideIn">
             <li *ngFor="let submenu of item.children">
-              <a class="dropdown-item font-weight-bold" href="#">{{
-                submenu.title
-              }}</a>
+              <a
+                *ngIf="isFirst"
+                class="dropdown-item font-weight-bold"
+                href="#"
+                >{{ submenu.title }}</a
+              >
               <div *ngFor="let courses of submenu.courses">
                 <a class="dropdown-item course-hover" href="">{{
                   courses.title
                 }}</a>
               </div>
-            <div class="dropdown-divider"></div>
-
             </li>
-
           </ul>
         </li>
       </ul>

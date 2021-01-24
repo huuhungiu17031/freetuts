@@ -4,7 +4,7 @@
   align-items: center;
   height: 90px;
 }
-.navbar{
+.navbar {
   padding: 0;
 }
 .navbar-bg {
@@ -12,7 +12,7 @@
 }
 
 .container > div:nth-child(2) {
-  width: 30%;
+  width: 33%;
   display: flex;
   justify-content: space-between;
   align-items: center;
