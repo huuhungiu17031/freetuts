@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#main_nav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="main_nav">
+      <ul class="navbar-nav" *ngFor="let item of $category">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+            {{ item.title }}
+          </a>
+          <ul class="dropdown-menu">
+            <li *ngFor="let submenu of item.children">
+              <a class="dropdown-item font-weight-bold" href="#">{{
+                submenu.title
+              }}</a>
+              <div *ngFor="let courses of submenu.courses">
+                <a class="dropdown-item course-hover" href="">{{
+                  courses.title
+                }}</a>
+              </div>
+            <div class="dropdown-divider"></div>
+
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

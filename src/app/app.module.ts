@@ -3,20 +3,30 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { HomepageComponent } from './homepage/homepage.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+import { HeaderComponent } from './components/header/header.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavComponent } from './components/nav/nav.component';
+import { MetadataService } from './services/metadata.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
     NavbarComponent,
-    HomepageComponent
+    NavComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    MetadataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
