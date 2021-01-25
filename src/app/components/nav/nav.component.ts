@@ -1,9 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MetadataService } from '../../services/metadata.service';
-import { map, filter, tap, mergeMap } from 'rxjs/operators';
-import { combineLatest, forkJoin } from 'rxjs';
-import { CategoryDetail } from 'src/app/model/category.model';
-import { CourseDetail } from 'src/app/model/course.model';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-nav',
