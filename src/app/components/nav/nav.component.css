@@ -7,6 +7,7 @@
 
 .nav-item {
   margin-right: 10px;
+  cursor: pointer;
 }
 .nav-item:hover a {
   background-color: white;
@@ -62,4 +63,10 @@ a {
 
 .slideIn {
   animation-name: slideIn;
+}
+.dropdown-menu > li:hover > a {
+  color: #f09217;
+}
+.dropdown-item-wrapper:hover > a {
+  color: #f09217;
 }

@@ -9,8 +9,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="main_nav">
-      <div class="nav-item home-icon">
-        <i class="fas fa-home text-white"></i>
+      <div class="navbar-na">
+        <i class="fas fa-home"></i>
       </div>
       <ul class="navbar-nav" *ngFor="let item of $category; first as isFirst">
         <li class="nav-item dropdown">
@@ -25,7 +25,10 @@
                 href="#"
                 >{{ submenu.title }}</a
               >
-              <div *ngFor="let courses of submenu.courses">
+              <div
+                class="dropdown-item-wrapper"
+                *ngFor="let courses of submenu.courses"
+              >
                 <a class="dropdown-item course-hover" href="">{{
                   courses.title
                 }}</a>
