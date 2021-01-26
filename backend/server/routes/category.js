@@ -34,13 +34,8 @@ route.get('/list', async(req, res) => {
         res.json({ error: true, message: err.message });
     }
 })
-route.get('/withoutChildren', async(req, res) => {
-    try {
-        let list_category = await CATEGORY_MODEL
-            .find({})
-        res.json({ error: false, list_category });
-    } catch (err) {
-        res.json({ error: true, message: err.message });
-    }
-})
+
+
+
+
 exports.CATEGORY_ROUTE = route;

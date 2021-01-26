@@ -10,13 +10,21 @@ import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NavComponent } from './components/nav/nav.component';
 import { MetadataService } from './services/metadata.service';
+import { SubDetailComponent } from './components/sub-detail/sub-detail.component';
+import { CourseDetailComponent } from './components/course-detail/course-detail.component';
+import { SubService } from './services/sub.service';
+import { CourseService } from './services/course.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     NavbarComponent,
-    NavComponent
+    NavComponent,
+    SubDetailComponent,
+    CourseDetailComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -25,7 +33,9 @@ import { MetadataService } from './services/metadata.service';
     HttpClientModule
   ],
   providers: [
-    MetadataService
+    MetadataService,
+    SubService,
+    CourseService
   ],
   bootstrap: [AppComponent]
 })

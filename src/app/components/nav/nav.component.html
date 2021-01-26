@@ -22,16 +22,18 @@
               <a
                 *ngIf="isFirst"
                 class="dropdown-item font-weight-bold"
-                href="#"
+                (click)="navigateToSubmenu(submenu._id)"
                 >{{ submenu.title }}</a
               >
               <div
                 class="dropdown-item-wrapper"
-                *ngFor="let courses of submenu.courses"
+                *ngFor="let course of submenu.courses"
               >
-                <a class="dropdown-item course-hover" href="">{{
-                  courses.title
-                }}</a>
+                <a
+                  class="dropdown-item course-hover"
+                  (click)="navigateToCourse(course._id)"
+                  >{{ course.title }}</a
+                >
               </div>
             </li>
           </ul>

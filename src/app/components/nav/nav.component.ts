@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MetadataService } from '../../services/metadata.service';
-import { tap } from 'rxjs/operators';
-
+import { tap, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -10,7 +10,10 @@ import { tap } from 'rxjs/operators';
 export class NavComponent implements OnInit {
   $category: any
   $course: any
-  constructor(private metadata: MetadataService) { }
+  constructor(
+    private metadata: MetadataService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.metadata.getCategory().pipe(
@@ -18,9 +21,15 @@ export class NavComponent implements OnInit {
     ).subscribe(
       category => this.$category = category
     )
-
   }
 
 
+  navigateToSubmenu(id) {
+    this.router.navigate(['/sub', id]);
+  }
 
+
+  navigateToCourse(id) {
+    this.router.navigate(['/course', id]);
+  }
 }

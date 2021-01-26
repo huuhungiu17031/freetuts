@@ -35,11 +35,13 @@ route.get('/list', async(req, res) => {
 
 })
 
-route.get('/list/:categoryID', async(req, res) => {
+route.get('/list/:subID', async(req, res) => {
     try {
         let list = await SUB_MODEL.find({
-            category: req.params.categoryID
-        }).populate('catergory')
+            _id: req.params.subID
+        }).populate(
+            'courses'
+        )
         res.json({ error: false, data: list })
     } catch (error) {
         res.json({ error: true, message: error.message })
