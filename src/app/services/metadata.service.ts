@@ -10,9 +10,7 @@ import { CATEGORY_URL } from './constants';
 export class MetadataService {
 
 
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private http: HttpClient) { }
 
   getCategory(): Observable<CategoryDetail[]> {
     return this.http.get<any>(CATEGORY_URL + '/list').pipe(map(response => {

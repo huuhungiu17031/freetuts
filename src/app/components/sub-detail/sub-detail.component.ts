@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap, tap, mergeMap } from 'rxjs/operators';
 import { SubService } from '../../services/sub.service';
 @Component({
   selector: 'app-sub-detail',
@@ -18,12 +18,11 @@ export class SubDetailComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap
       .pipe(
-        switchMap((params) => this.detail.detailSubCategory(params.get('subID'))),
+        mergeMap((params) => this.detail.detailSubCategory(params.get('subID'))),
         tap(data => console.log(data[0])),
       )
       .subscribe(
         data => this.data = data[0]
       )
-      console.log(this.courses)
   }
 }

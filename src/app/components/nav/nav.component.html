@@ -9,9 +9,10 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="main_nav">
-      <div class="navbar-na">
+      <a class="nav-item" [routerLink]="['/']">
         <i class="fas fa-home"></i>
-      </div>
+      </a>
+
       <ul class="navbar-nav" *ngFor="let item of $category; first as isFirst">
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" data-toggle="dropdown">

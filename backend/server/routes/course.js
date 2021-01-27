@@ -24,7 +24,7 @@ route.post('/add', async(req, res) => {
         let inforCourseAfterInserted = await inforCourse.save();
         if (!inforCourseAfterInserted) res.json({ error: true, message: "Can not insert" });
 
-        let pushData = await SUB_MODEL.findOneAndUpdate({ _id: subCategory._id }, { $push: { courses: inforCourseAfterInserted } });
+        let pushData = await SUB_MODEL.findOneAndUpdate({ _id: subCategory }, { $push: { courses: inforCourseAfterInserted } });
         if (!pushData) res.json({ error: true, message: 'cannot_update_category' });
 
 
@@ -38,7 +38,7 @@ route.post('/add', async(req, res) => {
 route.get('/listDetail/:courseID', async(req, res) => {
     try {
         let list = await COURSE_MODEL.find({
-            course: req.params.courseID
+            _id: req.params.courseID
         })
         res.json({ error: false, data: list })
     } catch (error) {

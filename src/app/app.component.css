@@ -1,3 +1,7 @@
-.container-border{
-    border: 1px solid rgb(245, 245, 245);
+.container-border {
+  border: 1px solid rgb(245, 245, 245) q;
+}
+
+.container-top {
+  margin-top: 30px;
 }
