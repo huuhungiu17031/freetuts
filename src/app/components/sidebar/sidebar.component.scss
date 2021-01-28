@@ -1,0 +1,33 @@
+.widget-head {
+  background-color: #2f6e91;
+  padding: 10px 15px;
+  border-bottom: 1px solid #eaeaea;
+}
+.widget-title {
+  color: white;
+  font-size: 14px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.mom-posts-widget {
+  //   padding: 10px 15px;
+  border: 1px solid #eaeaea;
+}
+.mpw-post {
+  display: flex;
+  padding: 5px 10px;
+  justify-content: center;
+  align-items: space-between;
+}
+.review-img {
+  margin-right: 5px;
+}
+.mpw-title a {
+  text-decoration: none;
+  outline: none;
+  color: black;
+  font-size: 13px;
+}
