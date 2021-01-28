@@ -20,7 +20,9 @@ import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { InforBoxComponent } from './components/infor-box/infor-box.component';
 import { PostDetailComponent } from './components/infor-box/post-detail/post-detail.component';
-
+import { FooterComponent } from './components/footer/footer.component';
+import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
+import { CopyrightComponent } from './components/copyright/copyright.component';
 
 @NgModule({
   declarations: [
@@ -34,19 +36,18 @@ import { PostDetailComponent } from './components/infor-box/post-detail/post-det
     SidebarComponent,
     PostDetailComponent,
     InforBoxComponent,
+    FooterComponent,
+    ScrollToTopComponent,
+    CopyrightComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    OwlModule
+    OwlModule,
   ],
-  providers: [
-    MetadataService,
-    SubService,
-    CourseService
-  ],
-  bootstrap: [AppComponent]
+  providers: [MetadataService, SubService, CourseService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
