@@ -5,7 +5,29 @@
     </div>
 
     <div class="action">
-      <div class="search-form default-search-form">
+      <form
+        method="get"
+        action="https://www.google.com.vn/search"
+        target="_blank"
+      >
+        <div class="input-group">
+          <div class="form-outline">
+            <input
+              type="search"
+              id="form1"
+              placeholder="Search..."
+              class="form-control"
+              value=""
+              autocomplete="off"
+              id="q_tmp"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </form>
+      <!-- <div class="search-form default-search-form">
         <form
           method="get"
           action="https://www.google.com.vn/search"
@@ -24,7 +46,7 @@
             <i class="fas fa-search"></i>
           </button>
         </form>
-      </div>
+      </div> -->
       <span>
         <i class="fab fa-facebook-f"></i>
       </span>
