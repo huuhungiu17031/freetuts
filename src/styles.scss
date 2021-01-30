@@ -7,3 +7,18 @@
   font-size: 14px;
   font-family: "Open Sans", sans-serif;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(245,245,245);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:  #2F6E91;
+}

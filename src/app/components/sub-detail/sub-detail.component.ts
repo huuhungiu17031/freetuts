@@ -18,7 +18,7 @@ export class SubDetailComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap
       .pipe(
-        mergeMap((params) => this.detail.detailSubCategory(params.get('subID'))),
+        mergeMap((params) => this.detail.detailSubCategory(params.get('subID'), "listAds")),
         tap(data => console.log(data[0])),
       )
       .subscribe(
