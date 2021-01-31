@@ -4,6 +4,9 @@
   align-items: center;
   height: 90px;
 }
+.container{
+  max-width: 1270px;
+}
 .navbar {
   padding: 0;
 }

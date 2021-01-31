@@ -14,16 +14,7 @@
 
 .widget-body {
   padding: 5px 0;
-  .widget-wrapper {
-    display: flex;
-    .left-img {
-      width: 250px;
-      height: 200px;
-    }
-    .right {
-      width: 100%;
-    }
-  }
+  display: flex;
 }
 .border-customize {
   border: 1px solid #eaeaea;
