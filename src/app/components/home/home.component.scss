@@ -5,6 +5,10 @@
 .base-box a {
   color: #f09217;
 }
+.base-box a:hover {
+  color: black;
+  text-decoration: none;
+}
 .main-title {
   font-weight: bolder;
 }
