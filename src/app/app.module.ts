@@ -39,7 +39,7 @@ import { CopyrightComponent } from './components/copyright/copyright.component';
     InforBoxComponent,
     FooterComponent,
     ScrollToTopComponent,
-    CopyrightComponent
+    CopyrightComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +54,6 @@ import { CopyrightComponent } from './components/copyright/copyright.component';
     CourseService,
     AdsService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

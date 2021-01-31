@@ -13,7 +13,6 @@
 .navbar-bg {
   background-color: rgb(47, 110, 145);
 }
-
 .container > div:nth-child(2) {
   width: 33%;
   display: flex;
