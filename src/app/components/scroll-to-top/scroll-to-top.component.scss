@@ -1,12 +1,21 @@
 .scroll-to-top {
+  width: 50px;
   position: fixed;
-  bottom: 15px;
+  bottom: 100px;
   right: 15px;
-  opacity: 0;
+  border: 1px solid #e0e0e0;
+  padding: 10px 0;
   transition: all 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
 }
 .show-scrollTop {
-  opacity: 1;
   transition: all 0.2s ease-in-out;
   z-index: 10;
+}
+p {
+  font-size: 12px;
 }

@@ -20,6 +20,10 @@ let subSchema = new Schema({
     courses: [{
         type: Schema.Types.ObjectId,
         ref: 'courses'
+    }],
+    posts: [{
+        type: Schema.Types.ObjectId,
+        ref: 'posts'
     }]
 });
 

@@ -28,12 +28,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //Add the routes here
 const { CATEGORY_ROUTE } = require('./routes/category');
 const { SUB_ROUTE } = require('./routes/sub');
-const { COURSE_ROUTE } = require('./routes/course')
+const { COURSE_ROUTE } = require('./routes/course');
+const { POST_ROUTE } = require('./routes/post');
 
-app.use("/category", CATEGORY_ROUTE)
-app.use("/sub", SUB_ROUTE)
-app.use("/course", COURSE_ROUTE)
 
+
+app.use("/category", CATEGORY_ROUTE);
+app.use("/sub", SUB_ROUTE);
+app.use("/course", COURSE_ROUTE);
+app.use('/post', POST_ROUTE);
 app.use(cors())
 
 app.get('/', (req, res) => {
@@ -46,8 +49,6 @@ mongoose.connect(process.env.DB_CONNECTION, {
     useFindAndModify: false,
     createIndexes: true
 });
-
-
 
 mongoose.connection.once('open', () => {
     console.log('Mongoosedb has beenn connected');

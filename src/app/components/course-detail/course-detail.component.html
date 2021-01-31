@@ -1,2 +1,22 @@
-<p>course-detail works!</p>
-{{ id }}
+<div *ngIf="course; else loadingTemplate">
+  <p>Home >Programming > {{ course.title }}</p>
+  <h4>Học {{ course.title }}</h4>
+  <p>Đăng bởi Administrator</p>
+  <p>{{ course.description }}</p>
+
+  <div class="post" *ngFor="let item of course.posts">
+    <h4>{{ item.title }}</h4>
+    <div class="table">
+      <div>
+        <img [src]="item.imageURL" [alt]="item.title" />
+      </div>
+      <div>
+        <p>{{ item.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTemplate>
+  <h1>Loading</h1>
+</ng-template>

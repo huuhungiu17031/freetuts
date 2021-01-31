@@ -1,7 +1,7 @@
 let express = require('express');
 let route = express.Router();
 let { CATEGORY_MODEL } = require('../models/category');
-const { SUB_MODEL } = require('../models/sub');
+
 // ADD CATEGORY 
 route.post('/add', async(req, res) => {
     try {
@@ -16,7 +16,7 @@ route.post('/add', async(req, res) => {
     } catch (err) {
         res.json({ error: true, message: err.message });
     }
-})
+});
 
 // GET LIST OF CATEGORY
 route.get('/list', async(req, res) => {
@@ -33,9 +33,16 @@ route.get('/list', async(req, res) => {
     } catch (err) {
         res.json({ error: true, message: err.message });
     }
-})
+});
 
+//DELETE THE CATEGORY
+route.delete('/remove/:id', async(req, res) => {
+    let { id } = req.params;
+    let infoUserAfterRemove = await CATEGORY_MODEL.findOneAndDelete({
+        _id: id
+    });
 
-
+    res.json({ infoUserAfterRemove })
+});
 
 exports.CATEGORY_ROUTE = route;

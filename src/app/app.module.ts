@@ -7,15 +7,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 //Owl carousel modules
 import { OwlModule } from 'ngx-owl-carousel';
-
+import { AdsService } from './services/ads.service';
+import { MetadataService } from './services/metadata.service';
+import { CourseService } from './services/course.service';
+import { SubService } from './services/sub.service';
+//Components
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NavComponent } from './components/nav/nav.component';
-import { MetadataService } from './services/metadata.service';
 import { SubDetailComponent } from './components/sub-detail/sub-detail.component';
 import { CourseDetailComponent } from './components/course-detail/course-detail.component';
-import { SubService } from './services/sub.service';
-import { CourseService } from './services/course.service';
 import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { InforBoxComponent } from './components/infor-box/infor-box.component';
@@ -45,9 +46,14 @@ import { CopyrightComponent } from './components/copyright/copyright.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    OwlModule,
+    OwlModule
   ],
-  providers: [MetadataService, SubService, CourseService],
+  providers: [
+    MetadataService,
+    SubService,
+    CourseService,
+    AdsService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

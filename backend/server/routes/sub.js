@@ -4,44 +4,60 @@ let route = express.Router();
 let { SUB_MODEL } = require('../models/sub');
 let { CATEGORY_MODEL } = require('../models/category');
 let ObjectID = require('mongoose').Types.ObjectId;
-//ADD SUB-CATEGORY
 
 
-route.post('/add', async(req, res) => {
-    try {
-        let { title, description, category } = req.body;
-        let inforSub = new SUB_MODEL({ title, description, category })
-        let inforSubAfterInserted = await inforSub.save();
-        if (!inforSubAfterInserted) res.json({ error: true, message: "Can not insert" });
 
-        let pushData = await CATEGORY_MODEL.findOneAndUpdate({ _id: category }, { $push: { children: inforSubAfterInserted._id } });
 
-        if (!pushData) res.json({ error: true, message: 'cannot_update_category' });
-
-        res.json({ error: false, data: inforSubAfterInserted });
-
-    } catch (error) {
-        res.json({ error: true, message: error.message })
-    }
-})
 
 route.get('/list', async(req, res) => {
     try {
-        let listSub = await SUB_MODEL.find({}).populate('courses')
+        let listSub = await SUB_MODEL.find({}).populate({
+            path: 'courses',
+        })
         res.json({ error: false, data: listSub })
     } catch (error) {
         res.json({ error: true, message: error.message })
     }
 
+});
+
+//ADD SUB AND UPDATE CHILDREN IN CATEGORY MODEL
+route.post('/add', async(req, res) => {
+    try {
+        let { title, description, category } = req.body;
+
+        //CHECK THE CATEGORY ID
+        if (!ObjectID.isValid(category))
+            res.json({ error: true, message: 'param_invalid_category_id' });
+
+        //CREATE AN INSTANCE OF THE SUB MODEL
+        let inforSub = new SUB_MODEL({ title, description, category });
+
+        // SAVING SUB MODEL TO DATABASE
+        let inforSubAfterInserted = await inforSub.save();
+        if (!inforSubAfterInserted) res.json({ error: true, message: "Can not insert" });
+
+        // FINDING THE ID AND PUSH THE SUB INTO THE CATEGORY MODEL
+        let { _id: subID } = inforSubAfterInserted;
+        let pushSUB = await CATEGORY_MODEL.findOneAndUpdate({ category }, { $push: { children: subID } });
+        if (!pushSUB) res.json({ error: true, message: 'cannot_update_category' });
+
+        // RETURN THE REULST
+        res.json({ error: false, data: inforSubAfterInserted });
+    } catch (error) {
+        res.json({ error: true, message: error.message })
+    }
 })
+
+
 
 route.get('/list/:subID', async(req, res) => {
     try {
         let list = await SUB_MODEL.find({
             _id: req.params.subID
-        }).populate(
-            'courses'
-        )
+        }).populate({
+            path: 'courses',
+        })
         res.json({ error: false, data: list })
     } catch (error) {
         res.json({ error: true, message: error.message })
@@ -49,9 +65,32 @@ route.get('/list/:subID', async(req, res) => {
 });
 
 
+route.get('/listAds', async(req, res) => {
+    try {
+        let listSub = await SUB_MODEL.find({}).populate({
+            path: 'posts',
+        })
+        res.json({ error: false, data: listSub })
+    } catch (error) {
+        res.json({ error: true, message: error.message })
+    }
+})
 
 
-
+route.get('/listAds/:id', async(req, res) => {
+    try {
+        let listSub = await SUB_MODEL.find({
+                _id: req.params.id
+            })
+            .populate({
+                path: 'posts',
+            })
+            .populate('courses')
+        res.json({ error: false, data: listSub })
+    } catch (error) {
+        res.json({ error: true, message: error.message })
+    }
+})
 
 
 exports.SUB_ROUTE = route;
