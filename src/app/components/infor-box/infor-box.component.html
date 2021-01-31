@@ -25,18 +25,7 @@
   <div class="widget-body">
     <div class="owl-carousel owl-theme">
       <div class="item" *ngFor="let currentItem of item.posts">
-        <div class="card">
-          <img
-            class="card-img-top"
-            [src]="currentItem.imageURL"
-            alt="Card image cap"
-          />
-          <div class="card-body">
-            <p class="card-text">
-              {{ currentItem.title }}
-            </p>
-          </div>
-        </div>
+        <app-post-detail [item]="currentItem"></app-post-detail>
       </div>
     </div>
   </div>
