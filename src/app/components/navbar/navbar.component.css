@@ -23,7 +23,14 @@
   max-width: 160px;
   margin-top: -10px;
 }
-
+.form-control {
+  width: 180px;
+  border-radius: 0;
+}
+.btn {
+  background-color: white;
+  border-radius: 0;
+}
 .search-form > span {
   margin-left: 10px;
 }
