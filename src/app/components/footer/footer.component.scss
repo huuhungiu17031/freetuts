@@ -23,3 +23,8 @@ li {
   margin-bottom: 5px;
   border-bottom: 1px solid #434a56;
 }
+@media (max-width: 768px) {
+  .container {
+    padding: 50px 10px;
+  }
+}

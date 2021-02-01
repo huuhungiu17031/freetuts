@@ -1,11 +1,11 @@
 .navbar .nav-item .dropdown-menu {
-  display: none;
+  /* display: none; */
 }
 .navbar .nav-item:hover .dropdown-menu {
   display: block;
 }
-.container{
-  max-width: 1270px;
+.container {
+  /* max-width: 1270px; */
 }
 .nav-item {
   margin-right: 10px;

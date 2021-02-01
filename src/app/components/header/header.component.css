@@ -1,10 +1,10 @@
 .bg-header {
-  background-color: rgb(237,237,253);
+  background-color: rgb(237, 237, 253);
   padding: 5px 0;
 }
 header > div > span {
-    margin-right: 20px;
+  margin-right: 20px;
 }
-.container{
-  max-width: 1270px;
+.container {
+  /* max-width: 1270px; */
 }

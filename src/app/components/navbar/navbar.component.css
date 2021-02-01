@@ -4,8 +4,8 @@
   align-items: center;
   height: 90px;
 }
-.container{
-  max-width: 1270px;
+.container {
+  /* max-width: 1270px; */
 }
 .navbar {
   padding: 0;
@@ -41,15 +41,33 @@ span > i {
 span {
   transition: all 0.5s;
 }
-span:nth-child(2):hover {
+span:nth-child(1):hover {
   background-color: #3b5997;
 }
-span:nth-child(3):hover {
+span:nth-child(2):hover {
   background-color: red;
+}
+span:nth-child(3):hover {
+  background-color: #b3d4fc;
 }
 span:nth-child(4):hover {
   background-color: #b3d4fc;
 }
-span:nth-child(5):hover {
-  background-color: #b3d4fc;
+
+@media (max-width: 768px) {
+  .container {
+    display: block;
+    height: 100%;
+  }
+  .action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .action form .input-group {
+    display: flex;
+  }
+  .action .social-media {
+    display: flex;
+  }
 }
