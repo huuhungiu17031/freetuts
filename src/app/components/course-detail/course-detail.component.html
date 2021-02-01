@@ -1,5 +1,5 @@
 <div *ngIf="course; else loadingTemplate">
-  <p>Home >Programming > {{ course.title }}</p>
+  <p>Home > {{ course.subCategory.title }} > {{ course.title }}</p>
   <h4>Học {{ course.title }}</h4>
   <p>Đăng bởi Administrator</p>
   <p>{{ course.description }}</p>

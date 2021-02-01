@@ -37,7 +37,10 @@ route.get('/list/:courseID', async(req, res) => {
     try {
         let list = await COURSE_MODEL.find({
             _id: req.params.courseID
-        }).populate('posts')
+        }).populate('posts').populate({
+            path: 'subCategory',
+            select: 'title'
+        })
         res.json({ error: false, data: list })
     } catch (error) {
         res.json({ error: true, message: error.message })

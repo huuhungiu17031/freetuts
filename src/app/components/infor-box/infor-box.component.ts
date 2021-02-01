@@ -43,8 +43,9 @@ export class InforBoxComponent implements OnInit, AfterViewInit {
     $('.owl-carousel').owlCarousel({
       loop: true,
       margin: 5,
+      dots: false,
       responsiveClass: true,
-      nav: false,
+      autoplay: true,
       responsive: {
         0: {
           items: 1,
@@ -53,7 +54,7 @@ export class InforBoxComponent implements OnInit, AfterViewInit {
           items: 3,
         },
         1000: {
-          items: 3,
+          items: 4,
         }
       }
     })

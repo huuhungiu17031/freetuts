@@ -1,15 +1,17 @@
-.container-border {
-  border: 1px solid rgb(245, 245, 245);
-}
 .footer {
   background-color: #4a525d;
   color: #fff;
 }
+
 .copyright {
   background-color: #373c43;
   color: #fff;
 }
 
+
+.container{
+  max-width: 1270px;
+}
 .container-top {
   margin-top: 30px;
 }
