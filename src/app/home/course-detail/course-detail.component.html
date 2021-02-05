@@ -1,8 +1,11 @@
 <div *ngIf="course; else loadingTemplate">
-  <p>Home > {{ course.subCategory.title }} > {{ course.title }}</p>
-  <h4>Học {{ course.title }}</h4>
-  <p>Đăng bởi Administrator</p>
-  <p>{{ course.description }}</p>
+  <!-- <p>Home > {{ course.subCategory.title }} > {{ course.title }}</p> -->
+
+  <div class="title">
+    <h2>{{ course.title }}</h2>
+    <p>Đăng bởi: Administrator | Vào ngày: 19-12-2016</p>
+    <p>{{ course.description }}</p>
+  </div>
 
   <div class="post" *ngFor="let item of course.posts">
     <h4>{{ item.title }}</h4>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MetadataService } from '../../services/metadata.service';
 import { tap, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { TransferDataService } from '../../services/transfer-data.service';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -12,27 +13,30 @@ export class NavComponent implements OnInit {
   $course: any
   constructor(
     private metadata: MetadataService,
-    private router: Router
+    private router: Router,
+    private transferDataService: TransferDataService,
+
   ) { }
 
   ngOnInit(): void {
     this.metadata.getCategory().pipe(
       tap((data) => { console.log(data) })
     ).subscribe(
-      category => this.$category = category
+      (category) => {
+        this.$category = category
+
+      },
     )
   }
-
-
-  navigateToSubmenu(id) {
-    this.router.navigate(['/sub', id]);
+  navigate(id?: string, prefix?: string): void {
+    if (prefix === 'sub') {
+      this.transferDataService.sendDataToStorageCourse(null)
+    }
+    this.router.navigate([`/${prefix}`, id]);
   }
 
-
-  navigateToCourse(id) {
-    this.router.navigate(['/course', id]);
-  }
   navigateToHome() {
     this.router.navigate(['']);
+    this.transferDataService.sendDataToStorageSub(null)
   }
 }

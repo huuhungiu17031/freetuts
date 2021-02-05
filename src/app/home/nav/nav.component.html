@@ -22,7 +22,7 @@
             <li *ngFor="let submenu of item.children">
               <a
                 class="dropdown-item font-weight-bold"
-                (click)="navigateToSubmenu(submenu._id)"
+                (click)="navigate(submenu._id, 'sub')"
                 >{{ submenu.title }}</a
               >
               <div
@@ -31,28 +31,29 @@
               >
                 <a
                   class="dropdown-item course-hover"
-                  (click)="navigateToCourse(course._id)"
+                  (click)="navigate(course._id, 'course')"
                   >{{ course.title }}</a
                 >
               </div>
             </li>
           </ul>
         </li>
+
         <ng-template #newTemplate>
           <li class="nav-item dropdown" *ngFor="let submenu of item.children">
             <a
               class="nav-link"
               href="#"
               data-toggle="dropdown"
-              (click)="navigateToSubmenu(submenu._id)"
+              (click)="navigate(submenu._id, 'sub')"
             >
               {{ submenu.title }}
             </a>
             <ul class="dropdown-menu animate slideIn">
               <li *ngFor="let course of submenu.courses">
                 <a
-                  class="dropdown-item "
-                  (click)="navigateToCourse(course._id)"
+                  class="dropdown-item"
+                  (click)="navigate(course._id, 'course')"
                   >{{ course.title }}</a
                 >
               </li>

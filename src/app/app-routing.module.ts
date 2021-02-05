@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeModule } from './home/home.module';
 import { AdminModule } from './admin/admin.module';
 
-const routes: Routes = [
+const routes: Routes = [ 
 
   {
     path: '', loadChildren: () => import('./home/home.module')

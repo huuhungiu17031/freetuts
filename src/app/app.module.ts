@@ -7,17 +7,29 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 //Owl carousel modules
 import { OwlModule } from 'ngx-owl-carousel';
+//Services
 import { AdsService } from './services/ads.service';
 import { MetadataService } from './services/metadata.service';
 import { CourseService } from './services/course.service';
+import { TransferDataService } from './services/transfer-data.service';
 import { SubService } from './services/sub.service';
+//Modules
 import { AdminModule } from './admin/admin.module';
 import { HomeModule } from './home/home.module';
-
+//Pipe
+import { ShortcutPipe } from './pipes/shortcut.pipe';
+const Services = [
+  MetadataService,
+  SubService,
+  CourseService,
+  AdsService,
+  TransferDataService
+]
 @NgModule({
   declarations: [
     AppComponent,
-    
+    ShortcutPipe,
+
   ],
   imports: [
     BrowserModule,
@@ -30,10 +42,7 @@ import { HomeModule } from './home/home.module';
     AdminModule
   ],
   providers: [
-    MetadataService,
-    SubService,
-    CourseService,
-    AdsService
+    Services
   ],
   bootstrap: [AppComponent],
 })
