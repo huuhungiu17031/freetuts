@@ -1,0 +1,31 @@
+.footer {
+  background-color: #4a525d;
+  color: #fff;
+}
+
+.copyright {
+  background-color: #373c43;
+  color: #fff;
+}
+
+.container-top {
+  margin-top: 30px;
+}
+
+.newList {
+  display: flex;
+  align-items: center;
+  background-color: rgb(237, 237, 237);
+  border-left: 10px solid rgb(47, 110, 145);
+  li {
+    list-style: none;
+    margin-right: 10px;
+    padding: 5px;
+    transition: all 0.2s;
+    font-size: 15px;
+    cursor: pointer;
+    &:hover {
+      background-color: white;
+    }
+  }
+}
