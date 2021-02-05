@@ -25,8 +25,10 @@ route.get('/list', async(req, res) => {
             .find({})
             .populate({
                 path: 'children',
+                select:'title',
                 populate: {
                     path: 'courses',
+                    select:'title',
                 }
             })
         res.json({ error: false, list_category });

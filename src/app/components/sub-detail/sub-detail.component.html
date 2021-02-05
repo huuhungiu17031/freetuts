@@ -11,10 +11,10 @@
   </div>
 </div>
 
-<ng-template #newTemplate>
+<ng-template #newTemplate >
   <p>Home > {{ data.title }}</p>
   <ul class="newList">
-    <li *ngFor="let item of data.courses">{{ item.title }}</li>
+    <li *ngFor="let item of courses">{{ item.title }}</li>
   </ul>
   <div class="title">
     <h1>{{ data.title }}</h1>
@@ -22,7 +22,7 @@
   </div>
 
 
-  <div class="post" *ngFor="let item of data.posts">
+  <div class="post" *ngFor="let item of posts">
     <h4>{{ item.title }}</h4>
     <div class="new_table">
       <div>

@@ -10,6 +10,7 @@ import { SubService } from '../../services/sub.service';
 export class SubDetailComponent implements OnInit {
   data: any;
   courses: any
+  posts: any
   constructor(
     private activatedRoute: ActivatedRoute,
     private detail: SubService
@@ -22,7 +23,11 @@ export class SubDetailComponent implements OnInit {
         tap(data => console.log(data[0])),
       )
       .subscribe(
-        data => this.data = data[0]
+        (data)=>{ 
+          this.data=data[0]
+          this.courses=data[0].courses
+          this.posts=data[0].posts
+        }
       )
   }
 }
