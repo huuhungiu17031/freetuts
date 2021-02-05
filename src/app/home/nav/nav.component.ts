@@ -32,4 +32,7 @@ export class NavComponent implements OnInit {
   navigateToCourse(id) {
     this.router.navigate(['/course', id]);
   }
+  navigateToHome() {
+    this.router.navigate(['']);
+  }
 }

@@ -11,42 +11,23 @@ import { AdsService } from './services/ads.service';
 import { MetadataService } from './services/metadata.service';
 import { CourseService } from './services/course.service';
 import { SubService } from './services/sub.service';
-//Components
-import { HeaderComponent } from './components/header/header.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { NavComponent } from './components/nav/nav.component';
-import { SubDetailComponent } from './components/sub-detail/sub-detail.component';
-import { CourseDetailComponent } from './components/course-detail/course-detail.component';
-import { HomeComponent } from './components/home/home.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { InforBoxComponent } from './components/infor-box/infor-box.component';
-import { PostDetailComponent } from './components/infor-box/post-detail/post-detail.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
-import { CopyrightComponent } from './components/copyright/copyright.component';
+import { AdminModule } from './admin/admin.module';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    NavbarComponent,
-    NavComponent,
-    SubDetailComponent,
-    CourseDetailComponent,
-    HomeComponent,
-    SidebarComponent,
-    PostDetailComponent,
-    InforBoxComponent,
-    FooterComponent,
-    ScrollToTopComponent,
-    CopyrightComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    OwlModule
+    OwlModule,
+    AdminModule,
+    HomeModule,
+    AdminModule
   ],
   providers: [
     MetadataService,
@@ -56,4 +37,4 @@ import { CopyrightComponent } from './components/copyright/copyright.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
