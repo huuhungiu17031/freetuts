@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+//CDK_EDITOR
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 //Owl carousel modules
 import { OwlModule } from 'ngx-owl-carousel';
 //Services
@@ -18,18 +21,19 @@ import { AdminModule } from './admin/admin.module';
 import { HomeModule } from './home/home.module';
 //Pipe
 import { ShortcutPipe } from './pipes/shortcut.pipe';
+import { PostsService } from './services/posts.service';
 const Services = [
   MetadataService,
   SubService,
   CourseService,
   AdsService,
-  TransferDataService
+  TransferDataService,
+  PostsService
 ]
 @NgModule({
   declarations: [
     AppComponent,
     ShortcutPipe,
-
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,8 @@ const Services = [
     OwlModule,
     AdminModule,
     HomeModule,
-    AdminModule
+    AdminModule,
+    CKEditorModule
   ],
   providers: [
     Services

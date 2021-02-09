@@ -31,13 +31,28 @@
               >
                 <a
                   class="dropdown-item course-hover"
-                  (click)="navigate(course._id, 'course')"
+                  (click)="
+                    navigate_course(
+                      course._id,
+                      'course',
+                      course.subCategory,
+                      'sub'
+                    )
+                  "
                   >{{ course.title }}</a
                 >
               </div>
             </li>
           </ul>
         </li>
+
+
+
+
+
+
+
+
 
         <ng-template #newTemplate>
           <li class="nav-item dropdown" *ngFor="let submenu of item.children">
@@ -53,7 +68,14 @@
               <li *ngFor="let course of submenu.courses">
                 <a
                   class="dropdown-item"
-                  (click)="navigate(course._id, 'course')"
+                  (click)="
+                    navigate_course(
+                      course._id,
+                      'course',
+                      course.subCategory,
+                      'sub'
+                    )
+                  "
                   >{{ course.title }}</a
                 >
               </li>

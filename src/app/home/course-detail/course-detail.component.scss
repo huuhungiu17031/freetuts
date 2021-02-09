@@ -4,15 +4,16 @@
   margin-bottom: 20px;
   .table {
     display: flex;
-    justify-content: center;
-    align-items: space-between;
+    margin-top: 10px;
     img {
-      width: 150px;
-      height: 121px;
+      width: 180px;
+      height: 140px;
+    }
+    p {
+      margin-left: 15px;
     }
   }
 }
-
 
 .title {
   border: 1px solid rgb(237, 237, 237);

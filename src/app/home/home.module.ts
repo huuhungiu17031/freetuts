@@ -43,13 +43,14 @@ const homeRoutes: Routes = [
         path: '', component: HomeComponent
       },
       {
-        path: 'sub/:subID', component: SubDetailComponent
-      },
-      {
-        path: 'course/:courseID', component: CourseDetailComponent
-      },
-      {
-        path: 'post/:postID', component: SpecifiedPostComponent
+        path: 'sub/:subID', component: SubDetailComponent, children: [
+          {
+            path: 'course/:courseID', component: CourseDetailComponent,
+          },
+          {
+            path: 'post/:postID', component: SpecifiedPostComponent
+          }
+        ]
       }
     ]
   }
@@ -62,7 +63,7 @@ const homeRoutes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forChild(homeRoutes)
+    RouterModule.forChild(homeRoutes),
   ],
   exports: [
     homeComponents

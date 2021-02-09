@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { tap, mergeMap } from 'rxjs/operators';
 import { SubService } from '../../services/sub.service';
 import { TransferDataService } from '../../services/transfer-data.service';
@@ -39,6 +39,5 @@ export class SubDetailComponent implements OnInit {
   }
   navigate(id: string) {
     this.router.navigate(['/post', id]);
-
   }
 }

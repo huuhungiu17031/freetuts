@@ -1,5 +1,7 @@
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { tap, mergeMap } from 'rxjs/operators';
+import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
   selector: 'app-specified-post',
@@ -7,14 +9,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./specified-post.component.scss']
 })
 export class SpecifiedPostComponent implements OnInit {
-  id: String;
-  constructor(private activatedRoute: ActivatedRoute) { }
+  data: any;
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private postsService: PostsService,
+
+  ) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap
-      .subscribe((params: ParamMap) => {
-        this.id = params.get('postID');
-        console.log(this.id);
+      .pipe(
+        mergeMap((params) => this.postsService.detailCourse(params.get('postID'), "list")),
+        tap(data => console.log(data[0])),
+      )
+      .subscribe((data) => {
+        this.data = data[0]
       })
   }
 

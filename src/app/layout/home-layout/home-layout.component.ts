@@ -21,7 +21,7 @@ export class HomeLayoutComponent implements OnInit {
     this.transferDataService.currentCourse.subscribe(data => this.course = data);
     console.log(this.course)
   }
-  navigate(id?: string, prefix?: string): void {
-    this.router.navigate([`/${prefix}`, id]);
+  navigate(idCourse: string, course: string, idSub: string, sub: string): void {
+    this.router.navigate([`/${sub}/${idSub}/${course}`, idCourse]);
   }
 }

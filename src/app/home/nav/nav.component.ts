@@ -24,10 +24,26 @@ export class NavComponent implements OnInit {
     ).subscribe(
       (category) => {
         this.$category = category
-
+        // this.interateObject(category)
+        console.log(this.$category)
       },
     )
   }
+
+  interateObject(obj: any): void { //recursive function to crawl nested data
+    for (let prop in obj) {
+      if (typeof obj[prop] == "object") {
+        this.interateObject(obj[prop])
+        console.log(prop.toUpperCase() + ': ', obj[prop]);
+      } else {
+        if (prop) {
+          console.log(prop.toUpperCase() + ': ', obj[prop]);
+        }
+      }
+    }
+  }
+
+
   navigate(id?: string, prefix?: string): void {
     if (prefix === 'sub') {
       this.transferDataService.sendDataToStorageCourse(null)
@@ -38,5 +54,8 @@ export class NavComponent implements OnInit {
   navigateToHome() {
     this.router.navigate(['']);
     this.transferDataService.sendDataToStorageSub(null)
+  }
+  navigate_course(idCourse: string, course: string, idSub: string, sub: string): void {
+    this.router.navigate([`/${sub}/${idSub}/${course}`, idCourse]);
   }
 }
