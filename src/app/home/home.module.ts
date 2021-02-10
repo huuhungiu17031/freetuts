@@ -19,6 +19,8 @@ import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 import { CopyrightComponent } from './copyright/copyright.component';
 import { HomeLayoutComponent } from '../layout/home-layout/home-layout.component';
 import { SpecifiedPostComponent } from './specified-post/specified-post.component';
+import { SubComponent } from './sub/sub.component';
+import { PaginationComponent } from './pagination/pagination.component';
 const homeComponents = [
   HeaderComponent,
   NavbarComponent,
@@ -32,7 +34,9 @@ const homeComponents = [
   FooterComponent,
   ScrollToTopComponent,
   CopyrightComponent,
-  HomeLayoutComponent
+  HomeLayoutComponent,
+  SubComponent,
+  PaginationComponent,
 ]
 
 
@@ -44,6 +48,7 @@ const homeRoutes: Routes = [
       },
       {
         path: 'sub/:subID', component: SubDetailComponent, children: [
+          { path: '', component: SubComponent },
           {
             path: 'course/:courseID', component: CourseDetailComponent,
           },
@@ -58,7 +63,7 @@ const homeRoutes: Routes = [
 @NgModule({
   declarations: [
     homeComponents,
-    HeadingContainerDirective
+    HeadingContainerDirective,
   ],
   imports: [
     CommonModule,

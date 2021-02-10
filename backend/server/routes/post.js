@@ -5,7 +5,7 @@ let { COURSE_MODEL } = require('../models/course');
 let { SUB_MODEL } = require('../models/sub');
 // OBJECT ID
 let ObjectID = require('mongoose').Types.ObjectId;
-
+const PAGE_SIZE = 4;
 //GET ALL THE POSTS
 route.get('/list', async(req, res) => {
     try {
@@ -67,10 +67,25 @@ route.post('/addToSub', async(req, res) => {
 //GET DETAIL OF POST
 route.get('/list/:postID', async(req, res) => {
     try {
-        let list = await POST_MODEL.find({
-            _id: req.params.postID
-        })
-        res.json({ error: false, data: list })
+        let page = req.query.page;
+        if (page) {
+            //Get page
+            page = parseInt(page);
+            var skip = (page - 1) * PAGE_SIZE;
+            let list = await POST_MODEL.find({
+                    _id: req.params.postID
+                })
+                .skip(skip)
+                .limit(PAGE_SIZE)
+            res.json({ error: false, data: list })
+        } else {
+            //Get all
+            let list = await POST_MODEL.find({
+                _id: req.params.postID
+            })
+            res.json({ error: false, data: list })
+        }
+
     } catch (error) {
         res.json({ error: true, message: error.message })
     }
@@ -78,10 +93,24 @@ route.get('/list/:postID', async(req, res) => {
 //GET DETAIL OF POST
 route.get('/listPost/:courseID', async(req, res) => {
     try {
-        let list = await POST_MODEL.find({
-            courseModelID: req.params.courseID
-        })
-        res.json({ error: false, data: list })
+        let page = req.query.page;
+        if (page) {
+            //Get page
+            page = parseInt(page);
+            var skip = (page - 1) * PAGE_SIZE;
+            let list = await POST_MODEL.find({
+                    courseModelID: req.params.courseID
+                })
+                .skip(skip)
+                .limit(PAGE_SIZE)
+            res.json({ error: false, data: list })
+        } else {
+            let list = await POST_MODEL.find({
+                courseModelID: req.params.courseID
+            })
+            res.json({ error: false, data: list })
+        }
+
     } catch (error) {
         res.json({ error: true, message: error.message })
     }

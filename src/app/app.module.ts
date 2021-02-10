@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { QuillModule } from 'ngx-quill'
 //CDK_EDITOR
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 //Owl carousel modules
@@ -44,7 +44,8 @@ const Services = [
     AdminModule,
     HomeModule,
     AdminModule,
-    CKEditorModule
+    CKEditorModule,
+    QuillModule
   ],
   providers: [
     Services

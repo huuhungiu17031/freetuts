@@ -1,0 +1,33 @@
+.table {
+  background-color: rgb(245, 245, 245);
+  height: 100px;
+}
+
+h4 {
+  font-weight: bold;
+}
+
+.title {
+  border: 1px solid rgb(237, 237, 237);
+  padding: 20px;
+}
+
+.post {
+  border: 1px solid rgb(224, 224, 224);
+  padding: 20px;
+  margin-bottom: 20px;
+  .new_table {
+    display: flex;
+    justify-content: center;
+    align-items: space-between;
+    img {
+      width: 150px;
+      height: 121px;
+      margin-right: 10px;
+    }
+  }
+}
+
+.widget-head {
+  margin-top: 20px;
+}

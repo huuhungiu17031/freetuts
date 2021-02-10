@@ -14,7 +14,7 @@ export class CourseService {
   ) { }
 
 
-  detailCourse(id: String, prefix:String): Observable<CourseDetail> {
+  detailCourse(id: String, prefix: String): Observable<CourseDetail> {
     return this.http.get<any>(COURSE_URL + `/${prefix}/${id}`).pipe(map(response => {
       return response['data'].map(data => {
         return new CourseDetail({

@@ -1,0 +1,39 @@
+<div
+  *ngIf="data && data.category == '600d71151bf06860543ca7fc'; else newTemplate"
+>
+  <h4>{{ data.title }}</h4>
+  <p>Đăng bởi Administrator | Vào ngày 04-08-2019</p>
+  <p>{{ data.description }}</p>
+  <div *ngFor="let item of data.courses">
+    <h4>{{ item.title }}</h4>
+    <div class="table"></div>
+  </div>
+</div>
+
+<ng-template #newTemplate>
+  <div class="title">
+    <h1>{{ data.title }}</h1>
+    <p>{{ data.description }}</p>
+  </div>
+
+  <div class="widget-head">
+    <h3 class="widget-title">
+      <span>Bài viết</span>
+    </h3>
+    <div class="header-sidebar"></div>
+  </div>
+
+  <div class="post" *ngFor="let item of posts">
+    <div (click)="navigate(item._id)">
+      <h4>{{ item.title }}</h4>
+      <div class="new_table">
+        <div>
+          <img [src]="item.imageURL" [alt]="item.title" />
+        </div>
+        <div class="w-100">
+          <p>{{ item.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

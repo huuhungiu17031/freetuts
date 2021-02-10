@@ -14,4 +14,11 @@ export class PostsService {
       return response['data']
     }))
   }
+
+  postsOnCourse(id: String, prefix: String, pageNum: any): Observable<any[]> {
+    return this.http.get<any>(POST_URL + `/${prefix}/${id}/?page=${pageNum}`).pipe(map(response => {
+      console.log(POST_URL + `/${prefix}/${id}/?page=${pageNum}`)
+      return response['data']
+    }))
+  }
 }

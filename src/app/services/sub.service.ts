@@ -29,6 +29,7 @@ export class SubService {
     })
     )
   }
+  
   allPostInSub(prefix: String): Observable<any> {
     return this.http.get<any>(SUB_URL + `/${prefix}`).pipe(map(response => {
       return response['data'].map(data => {
