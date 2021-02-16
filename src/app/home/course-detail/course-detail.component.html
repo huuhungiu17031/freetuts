@@ -16,19 +16,20 @@
             <img [src]="item.imageURL" [alt]="item.title" />
           </div>
           <div>
-            <p>{{ item.description }}</p>
+            <p>{{ item.description | summary: 120 }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div *ngIf="posts.length > 0">
-    <button class="btn btn-primary" (click)="pagination(1)">1</button>
-    <button class="btn btn-primary" (click)="pagination(2)">2</button>
-    <button class="btn btn-primary" (click)="pagination(3)">3</button>
-    <button class="btn btn-primary" (click)="pagination(4)">4</button>
+  <div>
+    <button class="btn btn-primary p-2 mr-2" (click)="pagination(1)">1</button>
+    <button class="btn btn-primary p-2 mr-2" (click)="pagination(2)">2</button>
+    <button class="btn btn-primary p-2 mr-2" (click)="pagination(3)">3</button>
+    <button class="btn btn-primary p-2 mr-2" (click)="pagination(4)">4</button>
   </div>
 </div>
+
 <ng-template #noContentTemplate>
   <h1>No content to display</h1>
 </ng-template>

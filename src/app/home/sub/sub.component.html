@@ -11,7 +11,7 @@
 </div>
 
 <ng-template #newTemplate>
-  <div class="title">
+  <div class="title" *ngIf="data">
     <h1>{{ data.title }}</h1>
     <p>{{ data.description }}</p>
   </div>
@@ -24,16 +24,24 @@
   </div>
 
   <div class="post" *ngFor="let item of posts">
-    <div (click)="navigate(item._id)">
-      <h4>{{ item.title }}</h4>
-      <div class="new_table">
-        <div>
-          <img [src]="item.imageURL" [alt]="item.title" />
-        </div>
-        <div class="w-100">
-          <p>{{ item.description }}</p>
+    <div *ngIf="posts.length > 0; else noContentTemplate">
+      <div (click)="navigate(item._id, 'post', item.courseModelID._id, 'sub')">
+        <h4>{{ item.title }}</h4>
+        <div class="new_table">
+          <div>
+            <img [src]="item.imageURL" [alt]="item.title" />
+          </div>
+          <div class="w-100">
+            <p>{{ item.description }}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </ng-template>
+<div>
+  <button class="btn btn-primary p-2 mr-2" (click)="pagination(1)">1</button>
+  <button class="btn btn-primary p-2 mr-2" (click)="pagination(2)">2</button>
+  <button class="btn btn-primary p-2 mr-2" (click)="pagination(3)">3</button>
+  <button class="btn btn-primary p-2 mr-2" (click)="pagination(4)">4</button>
+</div>

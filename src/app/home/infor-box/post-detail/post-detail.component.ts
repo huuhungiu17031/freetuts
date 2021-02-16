@@ -7,9 +7,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PostDetailComponent implements OnInit {
   @Input() item: any;
+  sss: any
   constructor() { }
 
   ngOnInit(): void {
+   console.log(this.item)
   }
-
 }

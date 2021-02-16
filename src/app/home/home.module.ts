@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HeadingContainerDirective } from '../directives/heading-container.directive';
@@ -21,6 +21,13 @@ import { HomeLayoutComponent } from '../layout/home-layout/home-layout.component
 import { SpecifiedPostComponent } from './specified-post/specified-post.component';
 import { SubComponent } from './sub/sub.component';
 import { PaginationComponent } from './pagination/pagination.component';
+//CDK EDITOR MODULE
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
+//Import creadcum module
+import { BreadcrumbModule } from 'angular-crumbs'
+import { SummaryPipe } from '../pipes/summary.pipe';
+
 const homeComponents = [
   HeaderComponent,
   NavbarComponent,
@@ -44,7 +51,7 @@ const homeRoutes: Routes = [
   {
     path: '', component: HomeLayoutComponent, children: [
       {
-        path: '', component: HomeComponent
+        path: '', component: HomeComponent,
       },
       {
         path: 'sub/:subID', component: SubDetailComponent, children: [
@@ -64,12 +71,17 @@ const homeRoutes: Routes = [
   declarations: [
     homeComponents,
     HeadingContainerDirective,
+    SummaryPipe,
   ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(homeRoutes),
+    BreadcrumbModule,
+    CKEditorModule
   ],
+
+  
   exports: [
     homeComponents
   ]

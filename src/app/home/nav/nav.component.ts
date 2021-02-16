@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MetadataService } from '../../services/metadata.service';
-import { tap, map } from 'rxjs/operators';
-import { Router } from '@angular/router';
 import { TransferDataService } from '../../services/transfer-data.service';
 @Component({
   selector: 'app-nav',
@@ -13,18 +11,14 @@ export class NavComponent implements OnInit {
   $course: any
   constructor(
     private metadata: MetadataService,
-    private router: Router,
     private transferDataService: TransferDataService,
 
   ) { }
 
   ngOnInit(): void {
-    this.metadata.getCategory().pipe(
-      tap((data) => { console.log(data) })
-    ).subscribe(
+    this.metadata.getCategory().subscribe(
       (category) => {
         this.$category = category
-        // this.interateObject(category)
         console.log(this.$category)
       },
     )
@@ -48,14 +42,17 @@ export class NavComponent implements OnInit {
     if (prefix === 'sub') {
       this.transferDataService.sendDataToStorageCourse(null)
     }
-    this.router.navigate([`/${prefix}`, id]);
+    this.transferDataService.sendDataToStoragePost(null)
+    this.transferDataService.navigate(prefix, id);
   }
 
   navigateToHome() {
-    this.router.navigate(['']);
     this.transferDataService.sendDataToStorageSub(null)
+    this.transferDataService.navigate('/');
+    
   }
   navigate_course(idCourse: string, course: string, idSub: string, sub: string): void {
-    this.router.navigate([`/${sub}/${idSub}/${course}`, idCourse]);
+    let URL = `${sub}/${idSub}/${course}`
+    this.transferDataService.navigate(URL, idCourse);
   }
 }

@@ -1,29 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { tap, mergeMap } from 'rxjs/operators';
 import { CourseService } from 'src/app/services/course.service';
 import { TransferDataService } from 'src/app/services/transfer-data.service';
 import { PostsService } from '../../services/posts.service';
+import { CourseDetail } from '../../model/course.model';
+import { PostDetail } from '../../model/post.model';
 @Component({
   selector: 'app-course-detail',
   templateUrl: './course-detail.component.html',
   styleUrls: ['./course-detail.component.scss']
 })
 export class CourseDetailComponent implements OnInit {
-  course: any
-  posts: any
+  course: CourseDetail
+  posts: Array<PostDetail>
   defaultPage: number = 1
+  numberOfPages: number
   constructor(
     private activatedRoute: ActivatedRoute,
     private courseService: CourseService,
     private transferDataService: TransferDataService,
-    private router: Router,
     private postService: PostsService
   ) { }
 
   ngOnInit(): void {
     this.getCourse();
     this.getPosts(this.defaultPage);
+    console.log(this.numberOfPages)
+
   }
 
   getCourse() {
@@ -35,6 +39,7 @@ export class CourseDetailComponent implements OnInit {
       .subscribe((data) => {
         this.course = data[0]
         this.transferDataService.sendDataToStorageCourse(this.course);
+        console.log(this.course)
       })
   }
 
@@ -45,18 +50,21 @@ export class CourseDetailComponent implements OnInit {
       ).subscribe(
         (data) => {
           this.posts = data
-          console.log(this.posts)
+          
         }
       )
   }
 
-  navigate_post(id_post?: string, suffix?: string, id_sub?: string, prefix?: string) {
-    this.router.navigate([`${prefix}/${id_sub}/${suffix}`, id_post]);
+  navigate_post(id_post: string, suffix: string, id_sub: string, prefix: string) {
+    let URL = `${prefix}/${id_sub}/${suffix}`;
+    this.transferDataService.navigate(URL, id_post)
   }
 
   pagination(pageNum) {
     this.getPosts(pageNum)
   }
+
+
 
 
 }

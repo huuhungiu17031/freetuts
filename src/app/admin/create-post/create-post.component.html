@@ -1,26 +1,66 @@
-<div class="container">
-  <h2 class="title">Full featured editor demo</h2>
-
-  <div class="content">
-    <div class="display">
-      <!-- <div class="logo">
-				<img src="../assets/ngx-editor.svg" />
-				<div class="subtitle">Rich Text Editor for angular using ProseMirror</div>
-			</div> -->
-    </div>
-
-    <form [formGroup]="form">
-      <div class="editor">
-        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
-        </ngx-editor-menu>
-        <ngx-editor [editor]="editor" formControlName="editorContent">
-        </ngx-editor>
-      </div>
-    </form>
-
-    <!-- <div class="editor">
-      <ngx-editor [editor]="editor" [(ngModel)]="editordoc">
-      </ngx-editor>
-    </div> -->
+<h1>Create Post</h1>
+<form [formGroup]="myForm" (ngSubmit)="save()">
+  Value:{{ myForm.value | json }}
+  <div class="form-group">
+    <label for="">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Title"
+      formControlName="title"
+    />
   </div>
-</div>
+  <div class="form-group">
+    <label for="">ImageURL</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="imageURL"
+      formControlName="imageURL"
+    />
+  </div>
+  <div class="form-group">
+    <label for="">CourseModelID</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="CourseModelID"
+      formControlName="courseModelID"
+    />
+  </div>
+  <div class="form-group">
+    <label for="">SubModelID</label>
+    <select
+      class="form-control"
+      placeholder="SubModelID"
+      formControlName="subModelID"
+    >
+      <option value="tinhocID1">Tin hoc</option>
+      <option value="600d7c3b1bf06860543ca82a">Tin hoc 121</option>
+      <option value="tinhocID3">Tin hoc</option>
+      <option value="tinhocID4">Tin hoc</option>
+      <option value="tinhocID5">Tin hoc</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="">Description</label>
+    <ckeditor
+      formControlName="description"
+      [editor]="Editor"
+      [config]="{
+        toolbar: [
+          'heading',
+          '|',
+          'bold',
+          'italic',
+          'link',
+          'bulletedList',
+          'numberedList',
+          'blockQuote'
+        ]
+      }"
+      (change)="onChange($event)"
+    ></ckeditor>
+  </div>
+  <button type="submit" class="btn btn-primary">SAVE</button>
+</form>

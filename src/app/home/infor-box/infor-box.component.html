@@ -1,20 +1,19 @@
-<div>
+<div *ngFor="let currentItem of subCategory$; ">
   <div class="widget-head">
     <h3 class="widget-title">
-      <span> Lập trình </span>
+      <span> {{ currentItem.title }} </span>
     </h3>
     <div class="header-sidebar"></div>
   </div>
   <div class="widget-body">
-    <div class="owl-carousel owl-theme">
-      <div class="item" *ngFor="let currentItem of course.posts">
-        <app-post-detail [item]="currentItem"></app-post-detail>
-      </div>
-    </div>
+    <app-post-detail class="app-post-detail" [item]="currentItem.courses"></app-post-detail>
+  </div>
+  <div class="widget-footer" (click)="redirectToSub('sub',currentItem._id)">
+    <a>More...</a>
   </div>
 </div>
 
-<div *ngFor="let item of allPosts">
+<!-- <div *ngFor="let item of allPosts">
   <div *ngIf="item.posts.length > 0">
     <div class="widget-head">
       <h3 class="widget-title">
@@ -30,10 +29,10 @@
         </div>
       </div>
     </div>
-    <div class="widget-footer" (click)="redirectToSub(item.id)">
+    <div class="widget-footer" (click)="redirectToSub('sub',item.id)">
       <a>More...</a>
     </div>
   </div>
 </div>
 
-<ng-template #loadingTemplate> Loading... </ng-template>
+<ng-template #loadingTemplate> Loading... </ng-template> -->

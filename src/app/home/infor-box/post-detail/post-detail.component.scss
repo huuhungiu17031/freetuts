@@ -1,9 +1,40 @@
-img{
-    width: 20em;
-    height: 15em;
+.content {
+  display: flex;
+  // justify-content:space-between;
+}
+.left-image {
+  width: 100%;
+}
+.right-img {
+  width: 90px;
+  height: 73px;
+  margin-right: 10px;
 }
 
-.card{
-    min-height: 22em;
-    cursor: pointer;
+.content-item {
+  transition: all 0.2s;
+  padding: 10px;
+  height: 100%;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+}
+.content-item-right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s;
+  padding: 20px 10px;
+  border: 1px solid #eaeaea;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+}
+
+.left-wrapper {
+  border: 1px solid #eaeaea;
+
+  height: 100%;
 }

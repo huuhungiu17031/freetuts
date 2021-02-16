@@ -19,8 +19,8 @@ route.get('/list', async(req, res) => {
 //ADD POST AND UPDATE POSTS ARRAY IN COURSE MODEL
 route.post('/add', async(req, res) => {
     try {
-        let { title, description, courseModelID, imageURL } = req.body;
-        let inforPost = new POST_MODEL({ title, description, courseModelID, imageURL });
+        let { title, description, courseModelID, imageURL, subModelID } = req.body;
+        let inforPost = new POST_MODEL({ title, description, courseModelID, imageURL, subModelID });
 
         // SAVING POST MODEL TO DATABASE
         let inforPostAfterInserted = await inforPost.save();
@@ -116,7 +116,33 @@ route.get('/listPost/:courseID', async(req, res) => {
     }
 });
 
+route.get('/postOfSub/:subID', async(req, res) => {
+    try {
+        let page = req.query.page;
+        if (page) {
+            //Get page
+            page = parseInt(page);
+            var skip = (page - 1) * PAGE_SIZE;
+            let list = await POST_MODEL.find({
+                    subModelID: req.params.subID
+                })
+                
+                .populate('courseModelID')
+                .skip(skip)
+                .limit(PAGE_SIZE)
+            res.json({ error: false, data: list, length: list.length })
+        } else {
+            let list = await POST_MODEL.find({
+                subModelID: req.params.subID
+            })
+            .populate('courseModelID')
+            res.json({ error: false, data: list, length: list.length })
+        }
 
+    } catch (error) {
+        res.json({ error: true, message: error.message })
+    }
+});
 
 
 exports.POST_ROUTE = route;

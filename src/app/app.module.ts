@@ -20,20 +20,23 @@ import { SubService } from './services/sub.service';
 import { AdminModule } from './admin/admin.module';
 import { HomeModule } from './home/home.module';
 //Pipe
-import { ShortcutPipe } from './pipes/shortcut.pipe';
 import { PostsService } from './services/posts.service';
+//Import creadcum module
+import { BreadcrumbModule } from 'angular-crumbs';
+import { AuthService } from './services/auth.service';
+import { DatePipe } from '@angular/common';
 const Services = [
   MetadataService,
   SubService,
   CourseService,
   AdsService,
   TransferDataService,
-  PostsService
+  PostsService,
+  AuthService
 ]
 @NgModule({
   declarations: [
     AppComponent,
-    ShortcutPipe,
   ],
   imports: [
     BrowserModule,
@@ -45,10 +48,12 @@ const Services = [
     HomeModule,
     AdminModule,
     CKEditorModule,
-    QuillModule
+    QuillModule,
+    BreadcrumbModule
   ],
   providers: [
-    Services
+    Services,
+    DatePipe
   ],
   bootstrap: [AppComponent],
 })

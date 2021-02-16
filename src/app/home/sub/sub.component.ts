@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { SubService } from '../../services/sub.service';
 import { TransferDataService } from '../../services/transfer-data.service';
-import { tap, mergeMap } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-sub',
@@ -13,28 +13,61 @@ export class SubComponent implements OnInit {
   data: any;
   courses: any
   posts: any
+  defaultPage: number = 1
+  numberOfPages: number
+
+
   constructor(
     private activatedRoute: ActivatedRoute,
-    private detail: SubService,
-    private router: Router,
     private transferDataService: TransferDataService,
+    private detail: SubService,
   ) { }
 
   ngOnInit(): void {
+    this.getSubInfor();
+    this.getPostOfSub(this.defaultPage)
+  }
+  getSubInfor() {
     this.activatedRoute.paramMap
       .pipe(
         mergeMap((params) => this.detail.detailSubCategory(params.get('subID'), "listAds")),
-        tap(data => console.log(data[0])),
       )
       .subscribe(
         (data) => {
           this.data = data[0]
-          this.courses = data[0].courses
-          this.posts = data[0].posts;
+          this.courses = this.data.courses
+
           this.transferDataService.sendDataToStorage(this.courses)
           this.transferDataService.sendDataToStorageSub(this.data)
         }
       )
+  }
+
+  getPostOfSub(num) {
+    this.activatedRoute.paramMap
+      .pipe(
+        mergeMap((params) => this.detail.allPostInOneSub(params.get('subID'), "postOfSub", num)),
+      )
+      .subscribe(
+        (data) => {
+          console.log(data);
+          this.posts = data['data'];
+          this.numberOfPages = data['length'];
+          console.log(this.numberOfPages)
+        }
+      )
+  }
+
+  navigate(id_post: string, suffix: string, id_sub: string, prefix: string) {
+    let URL = `${prefix}/${id_sub}/${suffix}`;
+    this.transferDataService.sendDataToStoragePost(null)
+    this.transferDataService.navigate(URL, id_post)
+
+  }
+
+
+  pagination(pageNum) {
+    this.getPostOfSub(pageNum)
   }
 
 

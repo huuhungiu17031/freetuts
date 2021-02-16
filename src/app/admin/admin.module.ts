@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminLayoutComponent } from '../layout/admin-layout/admin-layout.component';
 import { RouterModule, Routes } from '@angular/router';
+
+//Components
+import { AdminLayoutComponent } from '../layout/admin-layout/admin-layout.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { CreateCategoryComponent } from './create-category/create-category.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { CreatePostComponent } from './create-post/create-post.component';
-//CDK_EDITOR
+//CDK EDITOR MODULE
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
+//Import creadcum module
+import { BreadcrumbModule } from 'angular-crumbs'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxEditorModule } from 'ngx-editor';
+
 const adminComponent = [
   AdminLayoutComponent,
   AdminHomeComponent,
@@ -20,10 +24,10 @@ const adminComponent = [
 ]
 const adminRoutes: Routes = [
   {
-    path: '', component: AdminLayoutComponent, children: [
-      { path: 'login', component: AdminLoginComponent },
-      { path: 'createCategory', component: CreateCategoryComponent },
-      { path: 'post', component: CreatePostComponent },
+    path: '', component: AdminLayoutComponent, data: { breadcrumb: 'HomeLogin' }, children: [
+      { path: 'login', component: AdminLoginComponent, data: { breadcrumb: 'Login' } },
+      { path: 'createCategory', component: CreateCategoryComponent, data: { breadcrumb: 'Create Category' } },
+      { path: 'post', component: CreatePostComponent, data: { breadcrumb: 'Create Post' } },
     ]
   },
 
@@ -37,10 +41,10 @@ const adminRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(adminRoutes),
-    CKEditorModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxEditorModule
+    BreadcrumbModule,
+    CKEditorModule,
   ],
   exports: [
     adminComponent
