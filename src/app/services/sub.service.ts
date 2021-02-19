@@ -13,6 +13,11 @@ export class SubService {
   constructor(
     private http: HttpClient
   ) { }
+  getAllSub(prefix?: String): Observable<SubDetail> {
+    return this.http.get<any>(SUB_URL + `/${prefix}`).pipe(map(response => {
+      return response['data']
+    }))
+  }
 
   detailSubCategory(id?: String, prefix?: String): Observable<SubDetail> {
     return this.http.get<any>(SUB_URL + `/${prefix}/${id}`).pipe(map(response => {
@@ -37,7 +42,7 @@ export class SubService {
     )
   }
 
-  allPostInOneSub(id: String, prefix: String, pageNum: any): Observable<any> {
+  allPostInOneSub(id: String, prefix: String, pageNum?: any): Observable<any> {
     return this.http.get<any>(POST_URL + `/${prefix}/${id}/?page=${pageNum}`).pipe(map(response => {
       return response
     })

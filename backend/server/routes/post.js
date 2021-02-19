@@ -5,11 +5,11 @@ let { COURSE_MODEL } = require('../models/course');
 let { SUB_MODEL } = require('../models/sub');
 // OBJECT ID
 let ObjectID = require('mongoose').Types.ObjectId;
-const PAGE_SIZE = 4;
+const PAGE_SIZE = 6;
 //GET ALL THE POSTS
 route.get('/list', async(req, res) => {
     try {
-        let listCourse = await POST_MODEL.find({});
+        let listCourse = await POST_MODEL.find({})
         res.json({ error: false, data: listCourse })
     } catch (error) {
         res.json({ error: true, message: error.message })
@@ -26,13 +26,17 @@ route.post('/add', async(req, res) => {
         let inforPostAfterInserted = await inforPost.save();
         if (!inforPostAfterInserted) res.json({ error: true, message: "Can not insert" });
 
-        // FINDING THE ID AND PUSH THE POST INTO THE COURSE
         let { _id: subID } = inforPostAfterInserted;
-        let pushPost = await COURSE_MODEL.findOneAndUpdate({ _id: courseModelID }, { $push: { posts: subID } });
-        if (!pushPost) res.json({ error: true, message: 'cannot_update_course' });
+        // FINDING THE ID AND PUSH THE POST INTO THE COURSE
+        let pushPostToCourse = await COURSE_MODEL.findOneAndUpdate({ _id: courseModelID }, { $push: { posts: subID } });
+        if (!pushPostToCourse) res.json({ error: true, message: 'cannot_update_course' });
 
-        // RETURN THE REULST
-        res.json({ error: false, data: inforPostAfterInserted });
+        // FINDING THE ID AND PUSH THE POST INTO SUB
+        let pushPostToSub = await SUB_MODEL.findOneAndUpdate({ _id: subModelID }, { $push: { posts: subID } });
+        if (!pushPostToSub) res.json({ error: true, message: 'cannot_update_course' });
+
+        // RETURN THE RESULST
+        res.json({ error: false, data: inforPostAfterInserted, message: `Added successfully ${inforPostAfterInserted.title}` });
     } catch (error) {
         res.json({ error: true, message: error.message })
     }
@@ -51,7 +55,7 @@ route.post('/addToSub', async(req, res) => {
         let inforPostAfterInserted = await inforPost.save();
         if (!inforPostAfterInserted) res.json({ error: true, message: "Can not insert" });
 
-        // FINDING THE ID AND PUSH THE POST INTO THE COURSE
+        // FINDING THE ID AND PUSH THE POST INTO SUB
         let { _id: subID } = inforPostAfterInserted;
         let pushPost = await SUB_MODEL.findOneAndUpdate({ _id: subModelID }, { $push: { posts: subID } });
         if (!pushPost) res.json({ error: true, message: 'cannot_update_course' });
@@ -124,18 +128,25 @@ route.get('/postOfSub/:subID', async(req, res) => {
             page = parseInt(page);
             var skip = (page - 1) * PAGE_SIZE;
             let list = await POST_MODEL.find({
-                    subModelID: req.params.subID
+                subModelID: req.params.subID
+            })
+
+            .populate({
+                    path: 'subModelID',
+                    select: 'title',
                 })
-                
-                .populate('courseModelID')
                 .skip(skip)
                 .limit(PAGE_SIZE)
             res.json({ error: false, data: list, length: list.length })
         } else {
             let list = await POST_MODEL.find({
-                subModelID: req.params.subID
-            })
-            .populate('courseModelID')
+                    subModelID: req.params.subID
+                })
+                .populate({
+                    path: 'subModelID',
+                    select: 'title',
+                })
+
             res.json({ error: false, data: list, length: list.length })
         }
 

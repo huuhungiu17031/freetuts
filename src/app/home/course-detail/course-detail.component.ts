@@ -50,17 +50,21 @@ export class CourseDetailComponent implements OnInit {
       ).subscribe(
         (data) => {
           this.posts = data
-          
+
         }
       )
   }
 
-  navigate_post(id_post: string, suffix: string, id_sub: string, prefix: string) {
-    let URL = `${prefix}/${id_sub}/${suffix}`;
+  navigate_post(id_post: string, id_sub: string) {
+    let URL = `sub/${id_sub}/post`;
     this.transferDataService.navigate(URL, id_post)
   }
 
   pagination(pageNum) {
+    this.getPosts(pageNum)
+  }
+  paginationEvent(pageNum: number) {
+    // console.log("Parent", pageNum)
     this.getPosts(pageNum)
   }
 

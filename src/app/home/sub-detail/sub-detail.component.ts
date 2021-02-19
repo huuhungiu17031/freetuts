@@ -21,6 +21,21 @@ export class SubDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getSubInfor();
+  }
+  getSubInfor() {
+    this.activatedRoute.paramMap
+      .pipe(
+        mergeMap((params) => this.detail.detailSubCategory(params.get('subID'), "listAds")),
+      )
+      .subscribe(
+        (data) => {
+          this.data = data[0]
+          this.courses = this.data.courses
 
+          this.transferDataService.sendDataToStorage(this.courses)
+          this.transferDataService.sendDataToStorageSub(this.data)
+        }
+      )
   }
 }

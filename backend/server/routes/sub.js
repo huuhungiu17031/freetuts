@@ -12,12 +12,12 @@ let ObjectID = require('mongoose').Types.ObjectId;
 route.get('/list', async(req, res) => {
     try {
         let listSub = await SUB_MODEL.find({}).populate({
-            path: 'courses',
-            populate: {
-                path: 'posts',
+            path: 'posts',
+            options: {
+                limit: 5,
             }
-        })
-        res.json({ error: false, data: listSub })
+        });
+        res.json({ errlor: false, data: listSub })
     } catch (error) {
         res.json({ error: true, message: error.message })
     }

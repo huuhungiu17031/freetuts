@@ -22,7 +22,7 @@ export class PostsService {
     }))
   }
   submitPost(data): Observable<any[]> {
-    return this.http.post<any>(POST_URL + `/add`, data).pipe(map(response => {
+    return this.http.post<any>(POST_URL + `/add`,data).pipe(map(response => {
       return response['data']
     }))
   }

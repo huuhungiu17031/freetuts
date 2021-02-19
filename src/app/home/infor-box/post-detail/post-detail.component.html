@@ -1,34 +1,23 @@
-<div class="postDetail" *ngFor="let i of item">
-  <!-- {{ i.title }} -->
-  <div *ngIf="i.posts.length > 5">
-    <div class="content">
-      <div class="left">
-        <div class="left-wrapper" *ngFor="let post of i.posts | slice: 0:1">
-          <div class="content-item">
-            <div>
-              <img class="left-image" [src]="post.imageURL" alt="" />
-            </div>
-            <h4 class='my-3'>
-              {{ post.title }}
-            </h4>
-            <p>
-              {{ post.description }}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="right">
-        <div *ngFor="let post of i.posts | slice: 0:6; first as isFirst">
-          <div class="" *ngIf="!isFirst">
-            <div class="content-item-right">
-              <div>
-                <img class="right-img" [src]="post.imageURL" alt="" />
-              </div>
-              <div>{{ post.title }}-right</div>
-            </div>
-          </div>
-        </div>
+<div class="content-wrapper customize-border">
+  <div class="content-wrapper-left padding-c" *ngIf="leftContent !== undefined">
+    <div
+      class="content-left"
+      (click)="navigate(leftContent._id, leftContent.subModelID)"
+    >
+      <img [src]="leftContent.imageURL" [alt]="leftContent._id" />
+      <h2>{{ leftContent.title }}</h2>
+      <p [innerHTML]="leftContent.description | summary"></p>
+    </div>
+  </div>
+  <div class="content-wrapper-right" *ngIf="rightContent.length > 0">
+    <div class="content-right">
+      <div
+        class="padding-c"
+        (click)="navigate(item._id, item.subModelID)"
+        *ngFor="let item of rightContent"
+      >
+        <img class="right-img" [src]="item.imageURL" [alt]="item._id" />
+        <p [innerHTML]="item.description | summary"></p>
       </div>
     </div>
   </div>

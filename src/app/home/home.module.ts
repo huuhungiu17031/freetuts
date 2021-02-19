@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HeadingContainerDirective } from '../directives/heading-container.directive';
 
@@ -21,12 +21,19 @@ import { HomeLayoutComponent } from '../layout/home-layout/home-layout.component
 import { SpecifiedPostComponent } from './specified-post/specified-post.component';
 import { SubComponent } from './sub/sub.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { LoadingComponent } from './loading/loading.component';
+import { NoContentComponent } from './no-content/no-content.component';
 //CDK EDITOR MODULE
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-
 //Import creadcum module
 import { BreadcrumbModule } from 'angular-crumbs'
+//Import owl carousel module
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
+//Import pipes
 import { SummaryPipe } from '../pipes/summary.pipe';
+import { ShortcutPipe } from '../pipes/shortcut.pipe';
+
 
 const homeComponents = [
   HeaderComponent,
@@ -44,6 +51,9 @@ const homeComponents = [
   HomeLayoutComponent,
   SubComponent,
   PaginationComponent,
+  LoadingComponent,
+  NoContentComponent,
+  SpecifiedPostComponent
 ]
 
 
@@ -72,16 +82,19 @@ const homeRoutes: Routes = [
     homeComponents,
     HeadingContainerDirective,
     SummaryPipe,
+    ShortcutPipe,
   ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(homeRoutes),
     BreadcrumbModule,
-    CKEditorModule
+    CKEditorModule,
+    CarouselModule,
+    ReactiveFormsModule
   ],
 
-  
+
   exports: [
     homeComponents
   ]

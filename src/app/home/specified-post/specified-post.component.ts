@@ -17,6 +17,7 @@ export class SpecifiedPostComponent implements OnInit {
   data: any;
   datePipeString: string;
   public Editor = ClassicEditor;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private postsService: PostsService,

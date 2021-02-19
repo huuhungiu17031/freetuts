@@ -5,10 +5,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ShortcutPipe implements PipeTransform {
 
-  transform(value: string, limit: number): string {
-    if (!value) return null;
-    let actualLimit = limit ? limit : 100;
-    return value.substr(0, actualLimit) + ' ...';
+  transform(value: string): string {
+    switch (value) {
+      case "Chuyên đề":
+        return "Video"
+      case "Web miễn phí":
+        return "WordPress"
+      case "Quản trị web":
+        return 'Webmaster'
+      default:
+        return value
+    }
   }
 
 

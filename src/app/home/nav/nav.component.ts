@@ -1,6 +1,8 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { MetadataService } from '../../services/metadata.service';
 import { TransferDataService } from '../../services/transfer-data.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -12,7 +14,7 @@ export class NavComponent implements OnInit {
   constructor(
     private metadata: MetadataService,
     private transferDataService: TransferDataService,
-
+    private route: Router
   ) { }
 
   ngOnInit(): void {
@@ -48,8 +50,7 @@ export class NavComponent implements OnInit {
 
   navigateToHome() {
     this.transferDataService.sendDataToStorageSub(null)
-    this.transferDataService.navigate('/');
-    
+    this.route.navigate(['/'])
   }
   navigate_course(idCourse: string, course: string, idSub: string, sub: string): void {
     let URL = `${sub}/${idSub}/${course}`

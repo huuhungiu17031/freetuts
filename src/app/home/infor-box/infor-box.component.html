@@ -1,38 +1,40 @@
-<div *ngFor="let currentItem of subCategory$; ">
-  <div class="widget-head">
-    <h3 class="widget-title">
-      <span> {{ currentItem.title }} </span>
-    </h3>
-    <div class="header-sidebar"></div>
-  </div>
-  <div class="widget-body">
-    <app-post-detail class="app-post-detail" [item]="currentItem.courses"></app-post-detail>
-  </div>
-  <div class="widget-footer" (click)="redirectToSub('sub',currentItem._id)">
-    <a>More...</a>
-  </div>
-</div>
-
-<!-- <div *ngFor="let item of allPosts">
-  <div *ngIf="item.posts.length > 0">
-    <div class="widget-head">
-      <h3 class="widget-title">
-        <span> {{ item.title }}</span>
-      </h3>
-      <div class="header-sidebar"></div>
-    </div>
-
-    <div class="widget-body">
-      <div class="owl-carousel owl-theme">
-        <div class="item" *ngFor="let currentItem of item.posts">
-          <app-post-detail [item]="currentItem"></app-post-detail>
-        </div>
+<div *ngIf="subCategory$; else loadingTemplate">
+  <div *ngFor="let currentItem of subCategory$">
+    <div *ngIf="currentItem.posts.length > 0">
+      <div class="widget-head">
+        <h3 class="widget-title">
+          <span> {{ currentItem.title }} </span>
+        </h3>
+        <div class="header-sidebar"></div>
+      </div>
+      <div class="widget-body">
+        <app-post-detail
+          class="app-post-detail"
+          [item]="currentItem.posts"
+        ></app-post-detail>
+      </div>
+      <div
+        class="widget-footer"
+        (click)="redirectToSub('sub', currentItem._id)"
+      >
+        <a>More...</a>
       </div>
     </div>
-    <div class="widget-footer" (click)="redirectToSub('sub',item.id)">
-      <a>More...</a>
+  </div>
+  <div>
+    <div>
+      <div class="widget-head">
+        <h3 class="widget-title">
+          <span>Coupon giam gia </span>
+        </h3>
+        <div class="header-sidebar"></div>
+      </div>
+
+      <div class="widget-body" *ngIf="freeCode$"></div>
     </div>
   </div>
 </div>
 
-<ng-template #loadingTemplate> Loading... </ng-template> -->
+<ng-template #loadingTemplate>
+  <app-loading></app-loading>
+</ng-template>

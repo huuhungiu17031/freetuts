@@ -9,7 +9,6 @@ import { QuillModule } from 'ngx-quill'
 //CDK_EDITOR
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 //Owl carousel modules
-import { OwlModule } from 'ngx-owl-carousel';
 //Services
 import { AdsService } from './services/ads.service';
 import { MetadataService } from './services/metadata.service';
@@ -43,13 +42,13 @@ const Services = [
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    OwlModule,
     AdminModule,
     HomeModule,
     AdminModule,
     CKEditorModule,
     QuillModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    
   ],
   providers: [
     Services,
