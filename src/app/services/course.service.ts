@@ -13,8 +13,12 @@ export class CourseService {
     private http: HttpClient
   ) { }
 
-
-  detailCourse(id: String, prefix:String): Observable<CourseDetail> {
+  getAllCourse(prefix?: String): Observable<CourseDetail[]> {
+    return this.http.get<any>(COURSE_URL + `/${prefix}`).pipe(map(response => {
+      return response['data']
+    }))
+  }
+  detailCourse(id: String, prefix: String): Observable<CourseDetail> {
     return this.http.get<any>(COURSE_URL + `/${prefix}/${id}`).pipe(map(response => {
       return response['data'].map(data => {
         return new CourseDetail({

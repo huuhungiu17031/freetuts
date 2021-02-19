@@ -2,12 +2,17 @@
 <app-navbar></app-navbar>
 <app-nav></app-nav>
 <div class="container container-top">
+
   <p *ngIf="path != null">
-    Home > {{ path ? path.title : null }}
-    {{ course ? "> " + course.title : null }}
+    Home > <a> {{ path ? path.title : null }} </a>
+    <a>{{ course ? "> " + course.title : null }}</a>
+    <a>{{ post ? "> " + post : null }}</a>
   </p>
   <ul class="newList" *ngIf="obj != null && path != null">
-    <li (click)="navigate(item._id, 'course')" *ngFor="let item of obj">
+    <li
+      (click)="navigate(item._id, 'course', item.subCategory, 'sub')"
+      *ngFor="let item of obj"
+    >
       {{ item.title }}
     </li>
   </ul>

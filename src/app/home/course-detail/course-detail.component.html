@@ -1,25 +1,32 @@
 <div *ngIf="course; else loadingTemplate">
-  <!-- <p>Home > {{ course.subCategory.title }} > {{ course.title }}</p> -->
-
   <div class="title">
     <h2>{{ course.title }}</h2>
     <p>Đăng bởi: Administrator | Vào ngày: 19-12-2016</p>
     <p>{{ course.description }}</p>
   </div>
 
-  <div class="post" *ngFor="let item of course.posts">
-    <h4>{{ item.title }}</h4>
-    <div class="table">
-      <div>
-        <img [src]="item.imageURL" [alt]="item.title" />
-      </div>
-      <div>
-        <p>{{ item.description }}</p>
+  <div *ngIf="posts.length > 0; else noContentTemplate">
+    <div class="post" *ngFor="let item of posts">
+      <div (click)="navigate_post(item._id, course.subCategory._id)">
+        <h4>{{ item.title }}</h4>
+        <div class="table">
+          <div>
+            <img [src]="item.imageURL" [alt]="item.title" />
+          </div>
+          <div>
+            <p [innerHTML]="item.description | summary"></p>
+          </div>
+        </div>
       </div>
     </div>
+    <app-pagination (newItemEvent)="paginationEvent($event)"></app-pagination>
   </div>
 </div>
 
+<ng-template #noContentTemplate>
+  <app-no-content></app-no-content>
+</ng-template>
+
 <ng-template #loadingTemplate>
-  <h1>Loading</h1>
+  <app-loading></app-loading>
 </ng-template>

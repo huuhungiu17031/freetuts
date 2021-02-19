@@ -20,14 +20,15 @@
   border: 1px solid #eaeaea;
 }
 .card {
-  display: flex;
-  justify-content: center;
-  justify-content: space-between;
-  padding: 5px 10px;
+  padding: 10px;
   img {
-    width: 120px;
-    height: 72px;
+    height: 200px;
     margin-right: 10px;
+  }
+  p {
+    height: 70px;
+    font-weight: bold;
+    margin-top: 15px;
   }
 }
 
@@ -44,4 +45,8 @@
     background-color: #2f6e91;
     color: white;
   }
+}
+
+.app-post-detail {
+  width: 100%;
 }

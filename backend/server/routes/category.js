@@ -25,13 +25,13 @@ route.get('/list', async(req, res) => {
             .find({})
             .populate({
                 path: 'children',
-                select:'title',
+                select: 'title',
                 populate: {
                     path: 'courses',
-                    select:'title',
+                 
                 }
             })
-        res.json({ error: false, list_category });
+        res.json({ list_category });
     } catch (err) {
         res.json({ error: true, message: err.message });
     }
@@ -39,12 +39,16 @@ route.get('/list', async(req, res) => {
 
 //DELETE THE CATEGORY
 route.delete('/remove/:id', async(req, res) => {
-    let { id } = req.params;
-    let infoUserAfterRemove = await CATEGORY_MODEL.findOneAndDelete({
-        _id: id
-    });
+    try {
+        let id = req.params.id;
+        let infoUserAfterRemove = await CATEGORY_MODEL.findOneAndDelete({
+            _id: id
+        });
+        res.json({ message: 'Xoa thanh cong' + infoUserAfterRemove.title })
+    } catch (error) {
+        res.json({ error: true, message: err.message });
+    }
 
-    res.json({ infoUserAfterRemove })
 });
 
 exports.CATEGORY_ROUTE = route;

@@ -1,1 +1,34 @@
-<p>specified-post works!</p>
+<div class="post_detail">
+  <h3>{{ data.title }}</h3>
+  <div class="post_meta">
+    <span> Đăng bởi: Administrator </span>
+    <span>- Vào ngày {{ datePipeString }} </span>
+  </div>
+  <div [innerHTML]="data.description"></div>
+</div>
+<div class="comment">
+  <p>ĐĂNG BÌNH LUẬN: Thông tin của bạn sẽ được giữ bí mật.</p>
+  <p>
+    Lưu ý:: Sử dụng CODE để đăng code, và bình luận của bạn sẽ được kiểm duyệt
+    cẩn thận.
+  </p>
+  <div>
+    <ckeditor
+      [editor]="Editor"
+      [config]="{
+        toolbar: [
+          'heading',
+          '|',
+          'bold',
+          'italic',
+          'link',
+          'bulletedList',
+          'numberedList',
+          'blockQuote',
+          'fontSize'
+        ]
+      }"
+      (change)="onChange($event)"
+    ></ckeditor>
+  </div>
+</div>

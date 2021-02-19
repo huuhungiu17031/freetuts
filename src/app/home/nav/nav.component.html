@@ -15,7 +15,7 @@
 
       <ul class="navbar-nav" *ngFor="let item of $category; first as isFirst">
         <li class="nav-item dropdown" *ngIf="isFirst; else newTemplate">
-          <a class="nav-link" href="#" data-toggle="dropdown">
+          <a class="nav-link" data-toggle="dropdown">
             {{ item.title }}
           </a>
           <ul class="dropdown-menu animate slideIn">
@@ -31,7 +31,14 @@
               >
                 <a
                   class="dropdown-item course-hover"
-                  (click)="navigate(course._id, 'course')"
+                  (click)="
+                    navigate_course(
+                      course._id,
+                      'course',
+                      course.subCategory,
+                      'sub'
+                    )
+                  "
                   >{{ course.title }}</a
                 >
               </div>
@@ -47,13 +54,20 @@
               data-toggle="dropdown"
               (click)="navigate(submenu._id, 'sub')"
             >
-              {{ submenu.title }}
+              {{ submenu.title | shortcut }}
             </a>
             <ul class="dropdown-menu animate slideIn">
               <li *ngFor="let course of submenu.courses">
                 <a
                   class="dropdown-item"
-                  (click)="navigate(course._id, 'course')"
+                  (click)="
+                    navigate_course(
+                      course._id,
+                      'course',
+                      course.subCategory,
+                      'sub'
+                    )
+                  "
                   >{{ course.title }}</a
                 >
               </li>

@@ -12,9 +12,12 @@ let ObjectID = require('mongoose').Types.ObjectId;
 route.get('/list', async(req, res) => {
     try {
         let listSub = await SUB_MODEL.find({}).populate({
-            path: 'courses',
-        })
-        res.json({ error: false, data: listSub })
+            path: 'posts',
+            options: {
+                limit: 5,
+            }
+        });
+        res.json({ errlor: false, data: listSub })
     } catch (error) {
         res.json({ error: true, message: error.message })
     }
@@ -65,12 +68,14 @@ route.get('/list/:subID', async(req, res) => {
 });
 
 
+
+
 route.get('/listAds', async(req, res) => {
     try {
         let listSub = await SUB_MODEL.find({}).populate({
             path: 'posts',
         })
-        res.json({ error: false, data: listSub })
+        res.json({ error: false, data: listSub, length: listSub.length })
     } catch (error) {
         res.json({ error: true, message: error.message })
     }

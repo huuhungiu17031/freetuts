@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { CommonModule, DatePipe } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HeadingContainerDirective } from '../directives/heading-container.directive';
 
@@ -19,6 +19,22 @@ import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 import { CopyrightComponent } from './copyright/copyright.component';
 import { HomeLayoutComponent } from '../layout/home-layout/home-layout.component';
 import { SpecifiedPostComponent } from './specified-post/specified-post.component';
+import { SubComponent } from './sub/sub.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { LoadingComponent } from './loading/loading.component';
+import { NoContentComponent } from './no-content/no-content.component';
+//CDK EDITOR MODULE
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+//Import creadcum module
+import { BreadcrumbModule } from 'angular-crumbs'
+//Import owl carousel module
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
+//Import pipes
+import { SummaryPipe } from '../pipes/summary.pipe';
+import { ShortcutPipe } from '../pipes/shortcut.pipe';
+
+
 const homeComponents = [
   HeaderComponent,
   NavbarComponent,
@@ -32,7 +48,12 @@ const homeComponents = [
   FooterComponent,
   ScrollToTopComponent,
   CopyrightComponent,
-  HomeLayoutComponent
+  HomeLayoutComponent,
+  SubComponent,
+  PaginationComponent,
+  LoadingComponent,
+  NoContentComponent,
+  SpecifiedPostComponent
 ]
 
 
@@ -40,16 +61,18 @@ const homeRoutes: Routes = [
   {
     path: '', component: HomeLayoutComponent, children: [
       {
-        path: '', component: HomeComponent
+        path: '', component: HomeComponent,
       },
       {
-        path: 'sub/:subID', component: SubDetailComponent
-      },
-      {
-        path: 'course/:courseID', component: CourseDetailComponent
-      },
-      {
-        path: 'post/:postID', component: SpecifiedPostComponent
+        path: 'sub/:subID', component: SubDetailComponent, children: [
+          { path: '', component: SubComponent },
+          {
+            path: 'course/:courseID', component: CourseDetailComponent,
+          },
+          {
+            path: 'post/:postID', component: SpecifiedPostComponent
+          }
+        ]
       }
     ]
   }
@@ -57,13 +80,21 @@ const homeRoutes: Routes = [
 @NgModule({
   declarations: [
     homeComponents,
-    HeadingContainerDirective
+    HeadingContainerDirective,
+    SummaryPipe,
+    ShortcutPipe,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forChild(homeRoutes)
+    RouterModule.forChild(homeRoutes),
+    BreadcrumbModule,
+    CKEditorModule,
+    CarouselModule,
+    ReactiveFormsModule
   ],
+
+
   exports: [
     homeComponents
   ]

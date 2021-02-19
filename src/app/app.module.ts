@@ -5,8 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { QuillModule } from 'ngx-quill'
+//CDK_EDITOR
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 //Owl carousel modules
-import { OwlModule } from 'ngx-owl-carousel';
 //Services
 import { AdsService } from './services/ads.service';
 import { MetadataService } from './services/metadata.service';
@@ -17,32 +19,40 @@ import { SubService } from './services/sub.service';
 import { AdminModule } from './admin/admin.module';
 import { HomeModule } from './home/home.module';
 //Pipe
-import { ShortcutPipe } from './pipes/shortcut.pipe';
+import { PostsService } from './services/posts.service';
+//Import creadcum module
+import { BreadcrumbModule } from 'angular-crumbs';
+import { AuthService } from './services/auth.service';
+import { DatePipe } from '@angular/common';
 const Services = [
   MetadataService,
   SubService,
   CourseService,
   AdsService,
-  TransferDataService
+  TransferDataService,
+  PostsService,
+  AuthService
 ]
 @NgModule({
   declarations: [
     AppComponent,
-    ShortcutPipe,
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    OwlModule,
     AdminModule,
     HomeModule,
-    AdminModule
+    AdminModule,
+    CKEditorModule,
+    QuillModule,
+    BreadcrumbModule,
+    
   ],
   providers: [
-    Services
+    Services,
+    DatePipe
   ],
   bootstrap: [AppComponent],
 })

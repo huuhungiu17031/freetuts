@@ -1,0 +1,69 @@
+<h1>Create Post</h1>
+<form [formGroup]="myForm" (ngSubmit)="save()">
+  Value:{{ myForm.value | json }}
+  <div class="form-group">
+    <label for="">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Title"
+      formControlName="title"
+    />
+  </div>
+  <div class="form-group">
+    <label for="">ImageURL</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="imageURL"
+      formControlName="imageURL"
+    />
+  </div>
+  <div class="form-group">
+    <label for="">CourseModelID</label>
+    <select
+      type="text"
+      class="form-control"
+      placeholder="CourseModelID"
+      formControlName="courseModelID"
+    >
+      <option *ngFor="let course of listCourse" [value]="course._id">
+        {{ course.title }}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="">SubModelID</label>
+    <select
+      class="form-control"
+      placeholder="SubModelID"
+      formControlName="subModelID"
+    >
+      <option *ngFor="let sub of listSub" [value]="sub._id">
+        {{ sub.title }}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="">Description</label>
+    <ckeditor
+      formControlName="description"
+      [editor]="Editor"
+      [config]="{
+        toolbar: [
+          'heading',
+          '|',
+          'bold',
+          'italic',
+          'link',
+          'bulletedList',
+          'numberedList',
+          'blockQuote',
+          'fontSize'
+        ]
+      }"
+      (change)="onChange($event)"
+    ></ckeditor>
+  </div>
+  <button type="submit" class="btn btn-primary">SAVE</button>
+</form>

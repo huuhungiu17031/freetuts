@@ -1,8 +1,24 @@
-<div class="card">
-  <img class="card-img-top" [src]="item.imageURL" alt="Card image cap" />
-  <div class="card-body">
-    <p class="card-text">
-      {{ item.title }}
-    </p>
+<div class="content-wrapper customize-border">
+  <div class="content-wrapper-left padding-c" *ngIf="leftContent !== undefined">
+    <div
+      class="content-left"
+      (click)="navigate(leftContent._id, leftContent.subModelID)"
+    >
+      <img [src]="leftContent.imageURL" [alt]="leftContent._id" />
+      <h2>{{ leftContent.title }}</h2>
+      <p [innerHTML]="leftContent.description | summary"></p>
+    </div>
+  </div>
+  <div class="content-wrapper-right" *ngIf="rightContent.length > 0">
+    <div class="content-right">
+      <div
+        class="padding-c"
+        (click)="navigate(item._id, item.subModelID)"
+        *ngFor="let item of rightContent"
+      >
+        <img class="right-img" [src]="item.imageURL" [alt]="item._id" />
+        <p [innerHTML]="item.description | summary"></p>
+      </div>
+    </div>
   </div>
 </div>

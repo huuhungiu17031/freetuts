@@ -1,9 +1,67 @@
-img{
-    width: 20em;
-    height: 15em;
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
 }
 
-.card{
-    min-height: 22em;
-    cursor: pointer;
+.content-wrapper-left {
+  transition: all 0.2s;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
 }
+.content-left {
+  img {
+    width: 100%;
+  }
+}
+.content-right {
+  .right-img {
+    height: 73px;
+    margin-right: 10px;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s;
+    border: 1px solid #eaeaea;
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+  }
+}
+.customize-border {
+  border: 1px solid #eaeaea;
+}
+
+.padding-c {
+  padding: 20px 10px;
+}
+// .content-item {
+//   transition: all 0.2s;
+//   padding: 10px;
+//   height: 100%;
+
+//   &:hover {
+//     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+//   }
+// }
+// .content-item-right {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   transition: all 0.2s;
+//   padding: 20px 10px;
+//   border: 1px solid #eaeaea;
+
+//   &:hover {
+//     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+//   }
+// }
+
+// .left-wrapper {
+
+//   height: 100%;
+// }
