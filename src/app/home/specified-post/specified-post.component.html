@@ -18,8 +18,8 @@
         <p>
           <span class="username">{{ cmt.name }} </span>
           <span class="timestamps"
-            ><i class="far fa-clock"></i>
-            {{ cmt.createdAt | date: "medium" }}</span
+            ><i class="far fa-clock align-baseline"></i>
+            {{ cmt.createdAt | date: "mediumDate" }}</span
           >
         </p>
         <h5 class="comment-content" [innerHTML]="cmt.comment"></h5>
