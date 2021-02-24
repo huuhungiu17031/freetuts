@@ -1,8 +1,7 @@
-<h1>Create Post</h1>
 <form [formGroup]="myForm" (ngSubmit)="save()">
   Value:{{ myForm.value | json }}
   <div class="form-group">
-    <label for="">Title</label>
+    <label for="Title">Title</label>
     <input
       type="text"
       class="form-control"
@@ -11,7 +10,7 @@
     />
   </div>
   <div class="form-group">
-    <label for="">ImageURL</label>
+    <label for="imageURL">ImageURL</label>
     <input
       type="text"
       class="form-control"
@@ -20,7 +19,20 @@
     />
   </div>
   <div class="form-group">
-    <label for="">CourseModelID</label>
+    <label for="SubModelID">SubModelID</label>
+    <select
+      class="form-control"
+      placeholder="SubModelID"
+      formControlName="subModelID"
+    >
+      <option *ngFor="let sub of listSub" [value]="sub._id">
+        {{ sub.title }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group" *ngIf="listCourse && listCourse.length > 0">
+    <label for="CourseModelID">CourseModelID</label>
     <select
       type="text"
       class="form-control"
@@ -32,21 +44,13 @@
       </option>
     </select>
   </div>
+
   <div class="form-group">
-    <label for="">SubModelID</label>
-    <select
-      class="form-control"
-      placeholder="SubModelID"
-      formControlName="subModelID"
-    >
-      <option *ngFor="let sub of listSub" [value]="sub._id">
-        {{ sub.title }}
-      </option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="">Description</label>
+    <label for="description">Description</label>
+    <!-- <quill-editor [modules]='config'></quill-editor> -->
+
     <ckeditor
+      class="ck-content"
       formControlName="description"
       [editor]="Editor"
       [config]="{
@@ -58,8 +62,12 @@
           'link',
           'bulletedList',
           'numberedList',
+          'imageUpload',
+          'pre',
           'blockQuote',
-          'fontSize'
+          'undo',
+          'redo',
+          'blockCode'
         ]
       }"
       (change)="onChange($event)"

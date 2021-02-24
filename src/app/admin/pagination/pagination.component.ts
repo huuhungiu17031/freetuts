@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
@@ -6,6 +7,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class PaginationComponent implements OnInit {
   @Output() newItemEvent = new EventEmitter<Number>();
+
   constructor() { }
 
   ngOnInit(): void {

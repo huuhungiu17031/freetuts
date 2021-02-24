@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HeadingContainerDirective } from '../directives/heading-container.directive';
@@ -27,12 +27,12 @@ import { NoContentComponent } from './no-content/no-content.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 //Import creadcum module
 import { BreadcrumbModule } from 'angular-crumbs'
-//Import owl carousel module
-import { CarouselModule } from 'ngx-owl-carousel-o';
 
+import { CarouselModule } from 'ngx-owl-carousel-o';
 //Import pipes
 import { SummaryPipe } from '../pipes/summary.pipe';
 import { ShortcutPipe } from '../pipes/shortcut.pipe';
+import { FreeCodeComponent } from './free-code/free-code.component';
 
 
 const homeComponents = [
@@ -53,7 +53,9 @@ const homeComponents = [
   PaginationComponent,
   LoadingComponent,
   NoContentComponent,
-  SpecifiedPostComponent
+  SpecifiedPostComponent,
+  FreeCodeComponent,
+
 ]
 
 
@@ -90,8 +92,8 @@ const homeRoutes: Routes = [
     RouterModule.forChild(homeRoutes),
     BreadcrumbModule,
     CKEditorModule,
-    CarouselModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CarouselModule
   ],
 
 

@@ -17,9 +17,7 @@ export class PostDetailComponent implements OnInit {
   ngOnInit(): void {
     let copyContent = [...this.item]
     this.leftContent = copyContent.shift();
-    console.log("Left content", this.leftContent)
     this.rightContent = copyContent;
-    console.log("Right content", this.rightContent)
   }
 
 

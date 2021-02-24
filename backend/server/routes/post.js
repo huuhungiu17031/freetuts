@@ -9,8 +9,20 @@ const PAGE_SIZE = 6;
 //GET ALL THE POSTS
 route.get('/list', async(req, res) => {
     try {
-        let listCourse = await POST_MODEL.find({})
-        res.json({ error: false, data: listCourse })
+        let page = req.query.page
+        if (page) {
+            //Get page
+            page = parseInt(page);
+            var skip = (page - 1) * PAGE_SIZE;
+            let listCourse = await POST_MODEL
+                .find({})
+                .skip(skip)
+                .limit(PAGE_SIZE)
+            res.json({ error: false, data: listCourse })
+        } else {
+            let listCourse = await POST_MODEL.find({})
+            res.json({ error: false, data: listCourse })
+        }
     } catch (error) {
         res.json({ error: true, message: error.message })
     }
@@ -19,8 +31,8 @@ route.get('/list', async(req, res) => {
 //ADD POST AND UPDATE POSTS ARRAY IN COURSE MODEL
 route.post('/add', async(req, res) => {
     try {
-        let { title, description, courseModelID, imageURL, subModelID } = req.body;
-        let inforPost = new POST_MODEL({ title, description, courseModelID, imageURL, subModelID });
+        let { title, description, courseModelID, imageURL, subModelID, comments } = req.body;
+        let inforPost = new POST_MODEL({ title, description, courseModelID, imageURL, subModelID, comments });
 
         // SAVING POST MODEL TO DATABASE
         let inforPostAfterInserted = await inforPost.save();
@@ -44,30 +56,6 @@ route.post('/add', async(req, res) => {
 
 
 
-
-//ADD POST AND UPDATE POSTS ARRAY IN SUB MODEL
-route.post('/addToSub', async(req, res) => {
-    try {
-        let { title, description, subModelID, imageURL } = req.body;
-        let inforPost = new POST_MODEL({ title, description, subModelID, imageURL });
-
-        // SAVING POST MODEL TO DATABASE
-        let inforPostAfterInserted = await inforPost.save();
-        if (!inforPostAfterInserted) res.json({ error: true, message: "Can not insert" });
-
-        // FINDING THE ID AND PUSH THE POST INTO SUB
-        let { _id: subID } = inforPostAfterInserted;
-        let pushPost = await SUB_MODEL.findOneAndUpdate({ _id: subModelID }, { $push: { posts: subID } });
-        if (!pushPost) res.json({ error: true, message: 'cannot_update_course' });
-
-        // RETURN THE REULST
-        res.json({ error: false, data: inforPostAfterInserted });
-    } catch (error) {
-        res.json({ error: true, message: error.message })
-    }
-});
-
-
 //GET DETAIL OF POST
 route.get('/list/:postID', async(req, res) => {
     try {
@@ -79,6 +67,9 @@ route.get('/list/:postID', async(req, res) => {
             let list = await POST_MODEL.find({
                     _id: req.params.postID
                 })
+                .populate({
+                    path: 'comment'
+                })
                 .skip(skip)
                 .limit(PAGE_SIZE)
             res.json({ error: false, data: list })
@@ -86,6 +77,8 @@ route.get('/list/:postID', async(req, res) => {
             //Get all
             let list = await POST_MODEL.find({
                 _id: req.params.postID
+            }).populate({
+                path: 'comment'
             })
             res.json({ error: false, data: list })
         }
@@ -155,5 +148,34 @@ route.get('/postOfSub/:subID', async(req, res) => {
     }
 });
 
+route.delete('/delete/:id', async(req, res) => {
+    try {
+        let id = req.params.id;
+        const deleted = await POST_MODEL.findOneAndRemove({
+            _id: id
+        })
+        if (deleted) {
+            res.json({ message: 'DELETED', data: deleted })
+        } else {
+            res.status(404)
+                .json({ message: `Post you are looking for does not exist ` })
+        }
+    } catch (error) {
+        res.json({ error: true, message: error.message })
+    }
+})
 
+
+route.put('/update/:id', async(req, res) => {
+    try {
+        let id = req.params.id;
+        const update = await POST_MODEL.findOneAndUpdate({ _id: id }, req.body);
+        const postAfterUpdate = await POST_MODEL.findOne({ _id: id })
+
+        res.json({ message: 'Updated successfully', data: postAfterUpdate })
+    } catch (error) {
+        res.json({ error: true, message: error.message })
+
+    }
+})
 exports.POST_ROUTE = route;

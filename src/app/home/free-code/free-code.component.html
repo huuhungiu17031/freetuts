@@ -1,0 +1,25 @@
+<div>
+  <div>
+    <div class="widget-head">
+      <h3 class="widget-title">
+        <span>Coupon giảm giá</span>
+      </h3>
+      <div class="header-sidebar"></div>
+    </div>
+
+    <div class="widget-body">
+      <div class="owl-carousel owl-theme">
+        <div
+          *ngFor="let item of freeCode$"
+          (click)="navigate(item._id, item.subModelID)"
+          class="item"
+        >
+          <div>
+            <img [src]="item.imageURL" [alt]="item._id" />
+            <p>{{ item.title }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

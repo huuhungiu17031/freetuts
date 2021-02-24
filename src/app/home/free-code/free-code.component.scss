@@ -52,6 +52,10 @@
 }
 .item {
   cursor: pointer;
+  border: 1px solid #eaeaea;
+  div{
+    padding: 15px;
+  }
   img {
     height: 200px;
   }

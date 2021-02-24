@@ -1,4 +1,4 @@
-<div class="post_detail">
+<div class="post_detail" *ngIf="data">
   <h3>{{ data.title }}</h3>
   <div class="post_meta">
     <span> Đăng bởi: Administrator </span>
@@ -13,6 +13,20 @@
     cẩn thận.
   </p>
   <div>
+    <div class="cmt" *ngIf="commentList && commentList.length > 0">
+      <div class="cmt-detail" *ngFor="let cmt of commentList">
+        <p>
+          <span class="username"
+            >{{ cmt.name }}
+            <span class="timestamps"
+              ><i class="far fa-clock"></i>
+              {{ cmt.createdAt | date: "medium" }}</span
+            ></span
+          >
+        </p>
+        <h5 class="comment-content" [innerHTML]="cmt.comment"></h5>
+      </div>
+    </div>
     <ckeditor
       [editor]="Editor"
       [config]="{
@@ -28,7 +42,6 @@
           'fontSize'
         ]
       }"
-      (change)="onChange($event)"
     ></ckeditor>
   </div>
 </div>

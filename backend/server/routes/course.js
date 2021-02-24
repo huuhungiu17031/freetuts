@@ -37,7 +37,9 @@ route.get('/list/:courseID', async(req, res) => {
     try {
         let list = await COURSE_MODEL.find({
             _id: req.params.courseID
-        }).populate('posts').populate({
+        })
+        .populate('posts')
+        .populate({
             path: 'subCategory',
             select: 'title'
         })
