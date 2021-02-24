@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SweetAlertService {
-
-  constructor() { }
-
-
+  constructor() {}
 
   successBox(data) {
     Swal.fire({
@@ -15,8 +12,8 @@ export class SweetAlertService {
       icon: 'success',
       title: `${data.title} has been saved`,
       showConfirmButton: false,
-      timer: 1500
-    })
+      timer: 1500,
+    });
   }
   confirmBox(fn) {
     Swal.fire({
@@ -25,23 +22,18 @@ export class SweetAlertService {
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
-    })
-    .then((result) => {
+      cancelButtonText: 'No, keep it',
+    }).then((result) => {
       if (result.value) {
-        fn
+        fn;
         Swal.fire(
           'Deleted!',
           'Your imaginary file has been deleted.',
           'success'
-        )
+        );
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Cancelled',
-          'Your imaginary file is safe :)',
-          'error'
-        )
+        Swal.fire('Cancelled', 'Your imaginary file is safe :)', 'error');
       }
-    })
+    });
   }
 }

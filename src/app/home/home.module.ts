@@ -26,14 +26,13 @@ import { NoContentComponent } from './no-content/no-content.component';
 //CDK EDITOR MODULE
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 //Import creadcum module
-import { BreadcrumbModule } from 'angular-crumbs'
+import { BreadcrumbModule } from 'angular-crumbs';
 
 import { CarouselModule } from 'ngx-owl-carousel-o';
 //Import pipes
 import { SummaryPipe } from '../pipes/summary.pipe';
 import { ShortcutPipe } from '../pipes/shortcut.pipe';
 import { FreeCodeComponent } from './free-code/free-code.component';
-
 
 const homeComponents = [
   HeaderComponent,
@@ -55,30 +54,35 @@ const homeComponents = [
   NoContentComponent,
   SpecifiedPostComponent,
   FreeCodeComponent,
-
-]
-
+];
 
 const homeRoutes: Routes = [
   {
-    path: '', component: HomeLayoutComponent, children: [
+    path: '',
+    component: HomeLayoutComponent,
+    children: [
       {
-        path: '', component: HomeComponent,
+        path: '',
+        component: HomeComponent,
       },
       {
-        path: 'sub/:subID', component: SubDetailComponent, children: [
+        path: 'sub/:subID',
+        component: SubDetailComponent,
+        children: [
           { path: '', component: SubComponent },
           {
-            path: 'course/:courseID', component: CourseDetailComponent,
+            path: 'course/:courseID',
+            component: CourseDetailComponent,
           },
           {
-            path: 'post/:postID', component: SpecifiedPostComponent
-          }
-        ]
-      }
-    ]
-  }
-]
+            path: 'post/:postID',
+            component: SpecifiedPostComponent,
+          },
+        ],
+      },
+    ],
+  },
+];
 @NgModule({
   declarations: [
     homeComponents,
@@ -93,12 +97,9 @@ const homeRoutes: Routes = [
     BreadcrumbModule,
     CKEditorModule,
     ReactiveFormsModule,
-    CarouselModule
+    CarouselModule,
   ],
 
-
-  exports: [
-    homeComponents
-  ]
+  exports: [homeComponents],
 })
-export class HomeModule { }
+export class HomeModule {}

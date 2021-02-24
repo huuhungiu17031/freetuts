@@ -10,7 +10,12 @@
   margin-bottom: 30px;
 }
 .comment {
-  margin-top: 20px;
+  margin: 20px 0;
+}
+
+.comment-content {
+  color: rgb(74, 82, 93);
+  font-size: 0.9rem;
 }
 
 .cmt-detail {
@@ -18,21 +23,20 @@
   padding: 10px;
   margin: 10px 0;
   border-radius: 5px;
-  background-color: #fcf8e8;
+  background-color: #ededed;
 }
 .username {
-  background-color: #03506f;
-  color: #ffe3d8;
-  padding: 5px;
-  border-radius: 5px;
+  color: #03506f;
   text-transform: capitalize;
-  margin-right: 10px;
+  margin-right: 7px;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .timestamps {
-  color: rgb(162, 163, 163);
-  padding: 5px;
-  border-radius: 5px;
+  color: rgb(122, 122, 122);
   text-transform: capitalize;
   margin-right: 10px;
+  padding: 0 5px;
+  font-size: 12px;
 }

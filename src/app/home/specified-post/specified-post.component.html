@@ -9,19 +9,17 @@
 <div class="comment">
   <p>ĐĂNG BÌNH LUẬN: Thông tin của bạn sẽ được giữ bí mật.</p>
   <p>
-    Lưu ý:: Sử dụng CODE để đăng code, và bình luận của bạn sẽ được kiểm duyệt
+    Lưu ý: Sử dụng CODE để đăng code, và bình luận của bạn sẽ được kiểm duyệt
     cẩn thận.
   </p>
   <div>
     <div class="cmt" *ngIf="commentList && commentList.length > 0">
       <div class="cmt-detail" *ngFor="let cmt of commentList">
         <p>
-          <span class="username"
-            >{{ cmt.name }}
-            <span class="timestamps"
-              ><i class="far fa-clock"></i>
-              {{ cmt.createdAt | date: "medium" }}</span
-            ></span
+          <span class="username">{{ cmt.name }} </span>
+          <span class="timestamps"
+            ><i class="far fa-clock"></i>
+            {{ cmt.createdAt | date: "medium" }}</span
           >
         </p>
         <h5 class="comment-content" [innerHTML]="cmt.comment"></h5>
