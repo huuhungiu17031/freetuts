@@ -12,7 +12,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 //Import creadcum module
-import { BreadcrumbModule } from 'angular-crumbs'
+import { BreadcrumbModule } from 'angular-crumbs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //Import QuillJS
 import { QuillModule } from 'ngx-quill';
@@ -48,14 +48,12 @@ const adminRoutes: Routes = [
       }
     ]
   },
-
-]
+];
 
 @NgModule({
   declarations: [
     adminComponent,
     PaginationComponent,
-
   ],
   imports: [
     CommonModule,
@@ -66,8 +64,6 @@ const adminRoutes: Routes = [
     CKEditorModule,
     QuillModule
   ],
-  exports: [
-    adminComponent
-  ]
+  exports: [adminComponent],
 })
-export class AdminModule { }
+export class AdminModule {}
