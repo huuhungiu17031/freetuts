@@ -12,7 +12,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 //Import creadcum module
-import { BreadcrumbModule } from 'angular-crumbs'
+import { BreadcrumbModule } from 'angular-crumbs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const adminComponent = [
@@ -21,23 +21,30 @@ const adminComponent = [
   CreateCategoryComponent,
   AdminLoginComponent,
   CreatePostComponent,
-]
+];
 const adminRoutes: Routes = [
   {
-    path: '', component: AdminLayoutComponent, data: { breadcrumb: 'HomeLogin' }, children: [
-      { path: 'login', component: AdminLoginComponent, data: { breadcrumb: 'Login' } },
-      { path: 'createCategory', component: CreateCategoryComponent, data: { breadcrumb: 'Create Category' } },
-      { path: 'post', component: CreatePostComponent, data: { breadcrumb: 'Create Post' } },
-    ]
+    path: '',
+    component: AdminLayoutComponent,
+    data: { breadcrumb: 'HomeLogin' },
+    children: [
+      { path: 'login', component: AdminLoginComponent },
+      {
+        path: 'createCategory',
+        component: CreateCategoryComponent,
+        data: { breadcrumb: 'Create Category' },
+      },
+      {
+        path: 'post',
+        component: CreatePostComponent,
+        data: { breadcrumb: 'Create Post' },
+      },
+    ],
   },
-
-]
+];
 
 @NgModule({
-  declarations: [
-    adminComponent,
-
-  ],
+  declarations: [adminComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(adminRoutes),
@@ -46,8 +53,6 @@ const adminRoutes: Routes = [
     BreadcrumbModule,
     CKEditorModule,
   ],
-  exports: [
-    adminComponent
-  ]
+  exports: [adminComponent],
 })
-export class AdminModule { }
+export class AdminModule {}
