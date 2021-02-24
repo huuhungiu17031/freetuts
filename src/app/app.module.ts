@@ -24,6 +24,10 @@ import { PostsService } from './services/posts.service';
 import { BreadcrumbModule } from 'angular-crumbs';
 import { AuthService } from './services/auth.service';
 import { DatePipe } from '@angular/common';
+import { SweetAlertService } from './services/sweet-alert.service';
+//Import owl module
+import { OwlModule } from 'ngx-owl-carousel';
+import { DateFormatPipe } from './pipes/date-format.pipe';  
 const Services = [
   MetadataService,
   SubService,
@@ -31,11 +35,13 @@ const Services = [
   AdsService,
   TransferDataService,
   PostsService,
-  AuthService
+  AuthService,
+  SweetAlertService
 ]
 @NgModule({
   declarations: [
     AppComponent,
+    DateFormatPipe,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,7 @@ const Services = [
     CKEditorModule,
     QuillModule,
     BreadcrumbModule,
-    
+    OwlModule
   ],
   providers: [
     Services,

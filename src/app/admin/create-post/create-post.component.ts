@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
+
 //Import FormBuilder
 import { FormBuilder, FormGroup } from '@angular/forms'
 //Posts service
 import { PostsService } from '../../services/posts.service';
 import { SubService } from 'src/app/services/sub.service';
-import { CourseService } from '../../services/course.service';
+import { SweetAlertService } from 'src/app/services/sweet-alert.service';
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
@@ -18,29 +19,33 @@ export class CreatePostComponent implements OnInit {
   public listSub
   public listCourse
   formValues
+
+
   constructor(
     private fb: FormBuilder,
     private postService: PostsService,
     private subService: SubService,
-    private courseService: CourseService
+    private sweetAlertService: SweetAlertService
   ) { }
 
   ngOnInit(): void {
     this.handleFormSubmit();
-    this.getAllCourse();
     this.getAllSub();
   }
 
-  getAllCourse() {
-    this.courseService.getAllCourse('list').subscribe((data) => {
-      this.listCourse = data;
-    })
-  }
   getAllSub() {
     this.subService.getAllSub('list').subscribe((data) => {
-      this.listSub = data
+      this.listSub = data;
     })
   }
+
+  getCourses(id) {
+    this.subService.getAllSub(`list/${id}`).subscribe((data) => {
+      console.log(data);
+      this.listCourse = data[0].courses
+    })
+  }
+
   handleFormSubmit() {
     this.myForm = this.fb.group({
       title: '',
@@ -52,12 +57,20 @@ export class CreatePostComponent implements OnInit {
     this.myForm.valueChanges.subscribe(
       (data) => {
         this.formValues = data;
+        if (data.subModelID) {
+          this.getCourses(data.subModelID)
+        }
       }
     )
   }
+
   save() {
-    this.postService.submitPost(this.myForm.value).subscribe(data => { console.log(data) })
+    this.postService.submitPost(this.myForm.value).subscribe(data => {
+      console.log(data)
+      this.sweetAlertService.successBox(data);
+    })
   }
+
   onChange({ editor }: ChangeEvent) {
     const data = editor.getData();
     console.log(data);

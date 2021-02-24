@@ -15,6 +15,7 @@ export class SubService {
   ) { }
   getAllSub(prefix?: String): Observable<SubDetail> {
     return this.http.get<any>(SUB_URL + `/${prefix}`).pipe(map(response => {
+      console.log(SUB_URL + `/${prefix}`)
       return response['data']
     }))
   }

@@ -22,7 +22,11 @@ let postSchema = new Schema({
         type: Date,
         default: Date.now
     },
-})
+    comment: [{
+        type: Schema.Types.ObjectId,
+        ref: 'comments'
+    }]
+}, )
 
 
 let PostModel = mongoose.model('posts', postSchema);

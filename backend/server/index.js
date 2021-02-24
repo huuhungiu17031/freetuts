@@ -36,29 +36,30 @@ const { SUB_ROUTE } = require('./routes/sub');
 const { COURSE_ROUTE } = require('./routes/course');
 const { POST_ROUTE } = require('./routes/post');
 const { USER_ROUTE } = require('./routes/user')
-
+const { COMMENT_ROUTE } = require('./routes/comment')
 app.use(cors())
 
 app.use("/category", CATEGORY_ROUTE);
 app.use("/sub", SUB_ROUTE);
 app.use("/course", COURSE_ROUTE);
 app.use('/post', POST_ROUTE);
-// var checkLogin = async(req, res, next) => {
-//     console.log(req.cookies.token)
-//     try {
-//         var token = req.cookies.token;
-//         console.log(token)
-//         var idUser = jwt.verify(token, 'mk')
-//         var account = await USER_MODEL.findOne({
-//             _id: idUser
-//         })
-//         if (account) { next() } else {
-//             console.log('asas')
-//         }
-//     } catch (error) {
-//         res.json(error.message)
-//     }
-// }
+app.use('/comment', COMMENT_ROUTE)
+    // var checkLogin = async(req, res, next) => {
+    //     console.log(req.cookies.token)
+    //     try {
+    //         var token = req.cookies.token;
+    //         console.log(token)
+    //         var idUser = jwt.verify(token, 'mk')
+    //         var account = await USER_MODEL.findOne({
+    //             _id: idUser
+    //         })
+    //         if (account) { next() } else {
+    //             console.log('asas')
+    //         }
+    //     } catch (error) {
+    //         res.json(error.message)
+    //     }
+    // }
 app.use('/user', USER_ROUTE);
 
 app.get('/', (req, res) => {
