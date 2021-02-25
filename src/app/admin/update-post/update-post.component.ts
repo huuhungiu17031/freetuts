@@ -8,6 +8,7 @@ import { SubService } from '../../services/sub.service';
 import { CourseService } from '../../services/course.service';
 import { TransferDataService } from 'src/app/services/transfer-data.service';
 import { SweetAlertService } from 'src/app/services/sweet-alert.service';
+import { CommentService } from 'src/app/services/comment.service';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class UpdatePostComponent implements OnInit {
     private subService: SubService,
     private courseService: CourseService,
     private transferDataService: TransferDataService,
-    private sweetAlertService: SweetAlertService
+    private sweetAlertService: SweetAlertService,
   ) {
   }
 
@@ -40,6 +41,8 @@ export class UpdatePostComponent implements OnInit {
     this.getAllSub()
     this.getCourses()
   }
+
+
 
 
   form(data) {
@@ -78,7 +81,7 @@ export class UpdatePostComponent implements OnInit {
       console.log(res)
       this.sweetAlertService.successBox(res)
       // localStorage.clear()
-      this.transferDataService.navigate('listPost');
+      this.transferDataService.navigate('admin/listPost');
     })
   }
 

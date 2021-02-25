@@ -64,6 +64,6 @@ export class ListPostComponent implements OnInit {
     //send post to the update component and save to local storage
     this.postService.tranferPost(post)
     //navigate
-    this.transferDataService.navigate('updatePost', post._id)
+    this.transferDataService.navigate('admin/updatePost', post._id)
   }
 }

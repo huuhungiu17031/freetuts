@@ -4,11 +4,64 @@ let { COMMENT_MODEL } = require('../models/comment');
 let { POST_MODEL } = require('../models/post');
 let ObjectID = require('mongoose').Types.ObjectId;
 
+route.delete('/delete/:id', async(req, res) => {
+    try {
+        let id = req.params.id;
+        const deleted = await COMMENT_MODEL.findOneAndRemove({
+            _id: id
+        })
+        
+        if (deleted) {
+            res.json({ message: 'DELETED', data: deleted })
+        } else {
+            res.status(404)
+                .json({ message: `Post you are looking for does not exist ` })
+        }
+    } catch (error) {
+        res.json({ error: true, message: error.message })
+
+    }
+})
+
+
+route.get('/list/:postID', async(req, res) => {
+    try {
+        let list = await COMMENT_MODEL.find({
+            postModelID: req.params.postID
+        })
+        res.json({ error: false, data: list })
+    } catch (error) {
+        res.json({ error: true, message: error.message })
+    }
+})
+
+// route.get('/list/isActive', async(req, res) => {
+//     try {
+//         let list = await COMMENT_MODEL.find({
+            
+//         })
+//         res.json({ error: false, data: list })
+//     } catch (error) {
+//         res.json({ error: true, message: error.message })
+//     }
+// })
+
+route.get('/list', async(req, res) => {
+    try {
+        let list = await COMMENT_MODEL.find({
+
+        })
+        res.json({ error: false, data: list })
+    } catch (error) {
+        res.json({ error: true, message: error.message })
+    }
+})
+
 
 route.post('/add', async(req, res) => {
     try {
-        let { email, name, comment, postModelID } = req.body;
-        let commentInfo = new COMMENT_MODEL({ email, name, comment, postModelID });
+        let { email, name, comment, postModelID, isActive } = req.body;
+        let commentInfo = new COMMENT_MODEL({ email, name, comment, postModelID, isActive });
         //CHECK THE CATEGORY ID
         if (!ObjectID.isValid(postModelID))
             res.json({ error: true, message: 'param_invalid_category_id' });

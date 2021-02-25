@@ -1,5 +1,5 @@
 <form [formGroup]="myForm" (ngSubmit)="save()">
-  Value:{{ myForm.value | json }}
+  <!-- Value:{{ myForm.value | json }} -->
   <div class="form-group">
     <label for="Title">Title</label>
     <input
@@ -24,6 +24,7 @@
       class="form-control"
       placeholder="SubModelID"
       formControlName="subModelID"
+      (change)="subModelChange($event)"
     >
       <option *ngFor="let sub of listSub" [value]="sub._id">
         {{ sub.title }}
@@ -63,14 +64,13 @@
           'bulletedList',
           'numberedList',
           'imageUpload',
-          'pre',
           'blockQuote',
           'undo',
           'redo',
-          'blockCode'
+          
         ]
       }"
-      (change)="onChange($event)"
+      
     ></ckeditor>
   </div>
   <button type="submit" class="btn btn-primary">SAVE</button>

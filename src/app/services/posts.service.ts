@@ -19,11 +19,15 @@ export class PostsService {
   get currentUserValue(): any {
     return this.detailPostState.value;
   }
+
+  //Admin filter
   filterPost(value) {
     let arrPost = [...this.storageListPosts.getValue()];
     arrPost = arrPost.filter(item => item.title.toLowerCase().match(value.toLowerCase()))
     return arrPost
   }
+
+  ///Update the content of the post 
   updatePost(payload): Observable<any> {
     return this.http.put<any>(POST_URL + `/update/${payload._id}`, payload).pipe(map(response => {
       return response

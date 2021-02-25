@@ -4,10 +4,8 @@ import {  mergeMap } from 'rxjs/operators';
 import { PostsService } from 'src/app/services/posts.service';
 import { TransferDataService } from 'src/app/services/transfer-data.service';
 import { DatePipe } from '@angular/common';
-
-
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
+
 @Component({
   selector: 'app-specified-post',
   templateUrl: './specified-post.component.html',

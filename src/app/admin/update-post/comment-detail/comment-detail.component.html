@@ -1,0 +1,22 @@
+<h1 class="text-uppercase">Comments</h1>
+<mat-accordion *ngIf="comment && comment.length > 0">
+  <mat-expansion-panel
+    class="my-4"
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+    *ngFor="let cmt of comment"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{ cmt.email }}</mat-panel-title>
+      <mat-panel-description>
+        <p>{{ cmt.name }}</p>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>{{ cmt.comment }}</p>
+    <button class="btn btn-primary mr-1" (click)="show(cmt._id)">SHOW</button>
+    <button class="btn btn-warning mx-1" (click)="hide(cmt._id)">HIDE</button>
+    <button class="btn btn-danger mx-1" (click)="delete(cmt._id)">
+      DELETE
+    </button>
+  </mat-expansion-panel>
+</mat-accordion>

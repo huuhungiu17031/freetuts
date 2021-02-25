@@ -27,8 +27,11 @@ import { DatePipe } from '@angular/common';
 import { SweetAlertService } from './services/sweet-alert.service';
 //Import owl module
 import { OwlModule } from 'ngx-owl-carousel';
-import { DateFormatPipe } from './pipes/date-format.pipe';  
+import { DateFormatPipe } from './pipes/date-format.pipe';
 // import { ShareModule } from './share/share.module';
+// import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CommentService } from './services/comment.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 const Services = [
   MetadataService,
   SubService,
@@ -37,12 +40,14 @@ const Services = [
   TransferDataService,
   PostsService,
   AuthService,
+  CommentService,
   SweetAlertService
 ]
 @NgModule({
   declarations: [
     AppComponent,
     DateFormatPipe,
+    // PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +61,7 @@ const Services = [
     QuillModule,
     BreadcrumbModule,
     OwlModule,
+    BrowserAnimationsModule,
     // ShareModule
   ],
   providers: [

@@ -8,14 +8,19 @@ import { SummaryPipe } from '../pipes/summary.pipe';
 @NgModule({
   declarations: [
     ShortcutPipe,
-    SummaryPipe
+    SummaryPipe,
+    // PageNotFoundComponent
+    // MatExpansionModule
   ],
   imports: [
     CommonModule
   ],
   exports: [
     ShortcutPipe,
-    SummaryPipe
+    SummaryPipe,
+    // PageNotFoundComponent
+    // MatExpansionModule
+
   ]
 })
 export class ShareModule { }

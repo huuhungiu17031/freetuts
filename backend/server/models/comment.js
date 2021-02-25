@@ -16,6 +16,7 @@ let commentSchema = new Schema({
         required: true,
         trim: true,
     },
+    isActive: false,
     postModelID: {
         type: Schema.Types.ObjectId,
         ref: 'posts'
