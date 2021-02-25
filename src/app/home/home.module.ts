@@ -33,6 +33,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SummaryPipe } from '../pipes/summary.pipe';
 import { ShortcutPipe } from '../pipes/shortcut.pipe';
 import { FreeCodeComponent } from './free-code/free-code.component';
+import { ShareModule } from '../share/share.module';
 
 
 const homeComponents = [
@@ -83,8 +84,7 @@ const homeRoutes: Routes = [
   declarations: [
     homeComponents,
     HeadingContainerDirective,
-    SummaryPipe,
-    ShortcutPipe,
+
   ],
   imports: [
     CommonModule,
@@ -93,7 +93,8 @@ const homeRoutes: Routes = [
     BreadcrumbModule,
     CKEditorModule,
     ReactiveFormsModule,
-    CarouselModule
+    CarouselModule,
+    ShareModule
   ],
 
 

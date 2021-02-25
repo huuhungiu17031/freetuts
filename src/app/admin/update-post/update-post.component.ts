@@ -7,7 +7,8 @@ import { PostsService } from '../../services/posts.service';
 import { SubService } from '../../services/sub.service';
 import { CourseService } from '../../services/course.service';
 import { TransferDataService } from 'src/app/services/transfer-data.service';
-import { DatePipe } from '@angular/common'
+import { SweetAlertService } from 'src/app/services/sweet-alert.service';
+
 
 @Component({
   selector: 'app-update-post',
@@ -28,7 +29,7 @@ export class UpdatePostComponent implements OnInit {
     private subService: SubService,
     private courseService: CourseService,
     private transferDataService: TransferDataService,
-    private datepipe: DatePipe
+    private sweetAlertService: SweetAlertService
   ) {
   }
 
@@ -74,7 +75,9 @@ export class UpdatePostComponent implements OnInit {
     let payload = this.myForm.value;
     // console.log(currentPost)
     this.postService.updatePost(payload).subscribe(res => {
-      localStorage.clear()
+      console.log(res)
+      this.sweetAlertService.successBox(res)
+      // localStorage.clear()
       this.transferDataService.navigate('listPost');
     })
   }

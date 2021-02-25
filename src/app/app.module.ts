@@ -28,6 +28,7 @@ import { SweetAlertService } from './services/sweet-alert.service';
 //Import owl module
 import { OwlModule } from 'ngx-owl-carousel';
 import { DateFormatPipe } from './pipes/date-format.pipe';  
+// import { ShareModule } from './share/share.module';
 const Services = [
   MetadataService,
   SubService,
@@ -54,7 +55,8 @@ const Services = [
     CKEditorModule,
     QuillModule,
     BreadcrumbModule,
-    OwlModule
+    OwlModule,
+    // ShareModule
   ],
   providers: [
     Services,

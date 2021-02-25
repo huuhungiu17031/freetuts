@@ -19,6 +19,9 @@ import { QuillModule } from 'ngx-quill';
 import { ListPostComponent } from './list-post/list-post.component';
 import { PaginationComponent } from './pagination/pagination.component'
 import { UpdatePostComponent } from './update-post/update-post.component';
+import { SummaryPipe } from '../pipes/summary.pipe';
+import { ShortcutPipe } from '../pipes/shortcut.pipe';
+import { ShareModule } from '../share/share.module';
 const adminComponent = [
   AdminLayoutComponent,
   AdminHomeComponent,
@@ -64,7 +67,8 @@ const adminRoutes: Routes = [
     ReactiveFormsModule,
     BreadcrumbModule,
     CKEditorModule,
-    QuillModule
+    QuillModule,
+    ShareModule
   ],
   exports: [
     adminComponent

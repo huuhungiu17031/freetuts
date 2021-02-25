@@ -7,13 +7,20 @@ export class SweetAlertService {
 
   constructor() { }
 
+    error(message){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: message,
+      })
+    }
 
 
-  successBox(data) {
+  successBox(message) {
     Swal.fire({
       position: 'center',
       icon: 'success',
-      title: `${data.title} has been saved`,
+      title: message,
       showConfirmButton: false,
       timer: 1500
     })

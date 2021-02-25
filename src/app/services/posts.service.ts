@@ -19,7 +19,11 @@ export class PostsService {
   get currentUserValue(): any {
     return this.detailPostState.value;
   }
-
+  filterPost(value) {
+    let arrPost = [...this.storageListPosts.getValue()];
+    arrPost = arrPost.filter(item => item.title.toLowerCase().match(value.toLowerCase()))
+    return arrPost
+  }
   updatePost(payload): Observable<any> {
     return this.http.put<any>(POST_URL + `/update/${payload._id}`, payload).pipe(map(response => {
       return response
@@ -27,7 +31,13 @@ export class PostsService {
   }
 
   getAllPost(prefix: String): Observable<any[]> {
+    console.log(POST_URL + `/${prefix}`)
     return this.http.get<any>(POST_URL + `/${prefix}`).pipe(map(response => {
+      return response
+    }))
+  }
+  getAllPostNoPagination(): Observable<any[]> {
+    return this.http.get<any>(POST_URL + '/list').pipe(map(response => {
       return response
     }))
   }
@@ -56,10 +66,16 @@ export class PostsService {
   }
 
 
-  delete(id) {
+  deletePostUI(id) {
     let listPosts = this.storageListPosts.getValue();
     let listPostAfterDeleted = listPosts.filter(post => post._id !== id);
     this.storageListPosts.next(listPostAfterDeleted)
+  }
+
+  deletePostMongodb(id: String): Observable<any> {
+    return this.http.delete<any>(POST_URL + `/delete/${id}`).pipe(map(response => {
+      return response
+    }))
   }
 
   tranferPost(post) {
