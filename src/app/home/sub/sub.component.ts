@@ -36,7 +36,6 @@ export class SubComponent implements OnInit {
         (data) => {
           this.data = data[0]
           this.courses = this.data.courses
-
           this.transferDataService.sendDataToStorage(this.courses)
           this.transferDataService.sendDataToStorageSub(this.data)
         }
@@ -50,10 +49,9 @@ export class SubComponent implements OnInit {
       )
       .subscribe(
         (data) => {
-          console.log(data);
+          // console.log(data);
           this.posts = data['data'];
           this.numberOfPages = data['length'];
-          console.log(this.numberOfPages)
         }
       )
   }
@@ -67,7 +65,6 @@ export class SubComponent implements OnInit {
 
 
   paginationEvent(pageNum: number) {
-    // console.log("Parent", pageNum)
     this.getPostOfSub(pageNum)
   }
 

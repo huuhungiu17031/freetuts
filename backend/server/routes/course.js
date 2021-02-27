@@ -36,19 +36,35 @@ route.post('/add', async(req, res) => {
 route.get('/list/:courseID', async(req, res) => {
     try {
         let list = await COURSE_MODEL.find({
-            _id: req.params.courseID
-        })
-        .populate('posts')
-        .populate({
-            path: 'subCategory',
-            select: 'title'
-        })
+                _id: req.params.courseID
+            })
+            .populate('posts')
+            .populate({
+                path: 'subCategory',
+                select: 'title'
+            })
+            .populate({
+                path: 'courseDetail'
+            })
         res.json({ error: false, data: list })
     } catch (error) {
         res.json({ error: true, message: error.message })
     }
 });
 
+
+route.get('/listCourse/:subID', async(req, res) => {
+    try {
+        let id = req.params.subID;
+        let list = await COURSE_MODEL.find({ subCategory: id }).populate({
+            path: 'courseDetail'
+        })
+        res.json({ error: false, data: list })
+    } catch (error) {
+        res.json({ error: true, message: error.message })
+
+    }
+})
 
 
 

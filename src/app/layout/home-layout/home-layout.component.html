@@ -2,7 +2,6 @@
 <app-navbar></app-navbar>
 <app-nav></app-nav>
 <div class="container container-top">
-
   <p *ngIf="path != null">
     Home > <a> {{ path ? path.title : null }} </a>
     <a>{{ course ? "> " + course.title : null }}</a>
@@ -13,7 +12,7 @@
       (click)="navigate(item._id, 'course', item.subCategory, 'sub')"
       *ngFor="let item of obj"
     >
-      {{ item.title }}
+      {{ item.title | shortcut }}
     </li>
   </ul>
 
@@ -22,7 +21,8 @@
       <router-outlet></router-outlet>
     </div>
     <div class="col-sm-3">
-      <app-sidebar></app-sidebar>
+      <app-sidebar *ngIf="isActive"></app-sidebar>
+      <app-exercise-side-bar *ngIf="!isActive"></app-exercise-side-bar>
       <app-scroll-to-top></app-scroll-to-top>
     </div>
   </div>

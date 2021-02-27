@@ -37,7 +37,6 @@ export class UpdatePostComponent implements OnInit {
   ngOnInit(): void {
     //get post from listpostComponent
     this.form(this.postService.currentUserValue)
-
     this.getAllSub()
     this.getCourses()
   }

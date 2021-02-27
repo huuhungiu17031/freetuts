@@ -1,0 +1,16 @@
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 1px solid #e5e5e5;
+
+}
+
+.wrapper {
+  display: flex;
+  // padding: 20px 0;
+  //   width: 100%;
+  // align-items: center;
+
+  justify-content: space-between;
+}

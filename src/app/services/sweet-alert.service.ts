@@ -7,13 +7,13 @@ export class SweetAlertService {
 
   constructor() { }
 
-    error(message){
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: message,
-      })
-    }
+  error(message) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: message,
+    })
+  }
 
 
   successBox(message) {
@@ -22,7 +22,7 @@ export class SweetAlertService {
       icon: 'success',
       title: message,
       showConfirmButton: false,
-      timer: 1500
+      timer: 2500
     })
   }
   confirmBox(fn) {
@@ -34,21 +34,21 @@ export class SweetAlertService {
       confirmButtonText: 'Yes, delete it!',
       cancelButtonText: 'No, keep it'
     })
-    .then((result) => {
-      if (result.value) {
-        fn
-        Swal.fire(
-          'Deleted!',
-          'Your imaginary file has been deleted.',
-          'success'
-        )
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Cancelled',
-          'Your imaginary file is safe :)',
-          'error'
-        )
-      }
-    })
+      .then((result) => {
+        if (result.value) {
+          fn
+          Swal.fire(
+            'Deleted!',
+            'Your imaginary file has been deleted.',
+            'success'
+          )
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire(
+            'Cancelled',
+            'Your imaginary file is safe :)',
+            'error'
+          )
+        }
+      })
   }
 }

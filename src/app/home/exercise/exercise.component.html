@@ -1,0 +1,9 @@
+<div *ngIf="renderMaterial" class="exercise-wrapper border padding-cuz">
+  <h1>{{ renderMaterial.title }}</h1>
+  <p *ngIf="renderMaterial.createdAt">
+    Đăng bởi: Administrator- Vào ngày:
+    {{ renderMaterial.createdAt | date: "mediumDate" }}
+  </p>
+  <!-- <iframe width="420" height="345" [src]="videoURL"> </iframe> -->
+  <p [innerHTML]="renderMaterial.description"></p>
+</div>

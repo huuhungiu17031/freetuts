@@ -9,9 +9,9 @@ export class TransferDataService {
   private storageSub = new BehaviorSubject<any>(null);
   private storageCourse = new BehaviorSubject<any>(null);
   private storagePosts = new BehaviorSubject<any>(null);
-  private storageComment= new BehaviorSubject<any>(null);
+  private storageComment = new BehaviorSubject<any>(null);
 
-  
+
 
 
   currentData = this.storageData.asObservable();
@@ -30,6 +30,7 @@ export class TransferDataService {
   get commentFromStorage(): any {
     return this.storageComment.value
   }
+
   sendDataToStorage(data: any) {
     this.storageData.next(data);
     console.log(data);
@@ -43,11 +44,16 @@ export class TransferDataService {
     console.log(data);
   }
   sendDataToStoragePost(data: any) {
+
     this.storagePosts.next(data);
   }
 
   sendDataToStorageComment(data: any) {
-    this.storageComment.next(data);
+    let list = [...data];
+    if (list.length > 0) {
+      list = list.filter(item => item.isActive === true)
+    }
+    this.storageComment.next(list);
   }
 
   navigate(URL: string, id?: string) {

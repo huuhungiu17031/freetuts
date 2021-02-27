@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { CourseDetail } from '../model/course.model';
 import { COURSE_URL } from './constants';
 import { map } from 'rxjs/operators';
@@ -27,6 +27,7 @@ export class CourseService {
           description: data.description,
           subCategory: data.subCategory,
           posts: data.posts,
+          courseDetail: data.courseDetail,
         })
       })
     })

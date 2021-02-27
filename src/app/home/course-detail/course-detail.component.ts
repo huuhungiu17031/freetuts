@@ -12,7 +12,7 @@ import { PostDetail } from '../../model/post.model';
   styleUrls: ['./course-detail.component.scss']
 })
 export class CourseDetailComponent implements OnInit {
-  course: CourseDetail
+  course: any
   posts: Array<PostDetail>
   defaultPage: number = 1
   numberOfPages: number

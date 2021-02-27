@@ -19,6 +19,7 @@ let courseSchema = new Schema({
     },
     courseDetail: [{
         type: Schema.Types.ObjectId,
+        ref: 'coursedetails'
     }],
     posts: [{
         type: Schema.Types.ObjectId,

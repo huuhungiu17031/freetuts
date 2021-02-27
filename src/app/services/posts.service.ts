@@ -23,7 +23,7 @@ export class PostsService {
   //Admin filter
   filterPost(value) {
     let arrPost = [...this.storageListPosts.getValue()];
-    arrPost = arrPost.filter(item => item.title.toLowerCase().match(value.toLowerCase()))
+    arrPost = arrPost.filter(item => item.title.toLowerCase().includes(value.toLowerCase()))
     return arrPost
   }
 

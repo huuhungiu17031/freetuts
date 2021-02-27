@@ -32,6 +32,8 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
 // import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CommentService } from './services/comment.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CourseDetailService } from './services/course-detail.service';
+import { SubExerciseService } from './services/sub-exercise.service';
 const Services = [
   MetadataService,
   SubService,
@@ -41,7 +43,9 @@ const Services = [
   PostsService,
   AuthService,
   CommentService,
-  SweetAlertService
+  SweetAlertService,
+  CourseDetailService,
+  SubExerciseService
 ]
 @NgModule({
   declarations: [

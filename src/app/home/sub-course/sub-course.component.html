@@ -1,0 +1,24 @@
+<div class="wrapper border">
+  <div class="" *ngIf="subCourseData">
+    <h1>{{ subCourseData.title }}</h1>
+    <p>
+      Đăng bởi: Administrator | Vào ngày:
+      {{ subCourseData.createdAt | date: "shortDate" }} | View: 6825
+    </p>
+  </div>
+  <div *ngIf="renderMaterial && renderMaterial.length > 0">
+    <div *ngFor="let exercise of renderMaterial">
+      <p class="padding-cuz border background-cuz fnt-weight">
+        {{ exercise.title }}
+      </p>
+      <div *ngIf="exercise.subExercise && exercise.subExercise.length > 0">
+        <div
+          class="padding-cuz border txt-color"
+          *ngFor="let item of exercise.subExercise"
+        >
+          <div (click)="navigate(item._id)">{{ item.title }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

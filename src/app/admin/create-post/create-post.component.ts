@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 
 //Import FormBuilder
 import { FormBuilder, FormGroup } from '@angular/forms'

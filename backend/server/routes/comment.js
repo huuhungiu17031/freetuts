@@ -4,13 +4,25 @@ let { COMMENT_MODEL } = require('../models/comment');
 let { POST_MODEL } = require('../models/post');
 let ObjectID = require('mongoose').Types.ObjectId;
 
+route.put('/update/:id', async(req, res) => {
+    try {
+        let id = req.params.id;
+        const update = await COMMENT_MODEL.findOneAndUpdate({ _id: id }, req.body);
+        const commentAfterUpdate = await COMMENT_MODEL.findOne({ _id: id })
+        res.json({ message: 'Updated successfully', data: commentAfterUpdate })
+    } catch (error) {
+        res.json({ error: true, message: error.message })
+
+    }
+})
+
 route.delete('/delete/:id', async(req, res) => {
     try {
         let id = req.params.id;
         const deleted = await COMMENT_MODEL.findOneAndRemove({
             _id: id
         })
-        
+
         if (deleted) {
             res.json({ message: 'DELETED', data: deleted })
         } else {
@@ -23,7 +35,6 @@ route.delete('/delete/:id', async(req, res) => {
     }
 })
 
-
 route.get('/list/:postID', async(req, res) => {
     try {
         let list = await COMMENT_MODEL.find({
@@ -34,17 +45,6 @@ route.get('/list/:postID', async(req, res) => {
         res.json({ error: true, message: error.message })
     }
 })
-
-// route.get('/list/isActive', async(req, res) => {
-//     try {
-//         let list = await COMMENT_MODEL.find({
-            
-//         })
-//         res.json({ error: false, data: list })
-//     } catch (error) {
-//         res.json({ error: true, message: error.message })
-//     }
-// })
 
 route.get('/list', async(req, res) => {
     try {
@@ -57,11 +57,10 @@ route.get('/list', async(req, res) => {
     }
 })
 
-
 route.post('/add', async(req, res) => {
     try {
-        let { email, name, comment, postModelID, isActive } = req.body;
-        let commentInfo = new COMMENT_MODEL({ email, name, comment, postModelID, isActive });
+        let { email, name, comment, postModelID, isActive, imageURL } = req.body;
+        let commentInfo = new COMMENT_MODEL({ email, name, comment, postModelID, isActive, imageURL });
         //CHECK THE CATEGORY ID
         if (!ObjectID.isValid(postModelID))
             res.json({ error: true, message: 'param_invalid_category_id' });
@@ -77,7 +76,7 @@ route.post('/add', async(req, res) => {
         if (!pushCommentToPost) res.json({ error: true, message: 'cannot_update_course' });
         console.log(pushCommentToPost);
 
-        res.json({ error: false, data: pushCommentToPost })
+        res.json({ error: false, data: commentAfterInserted, message: 'Add successfully!' })
     } catch (error) {
         res.json({ error: true, message: error.message })
     }
