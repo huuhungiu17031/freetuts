@@ -5,6 +5,7 @@
       Đăng bởi: Administrator | Vào ngày:
       {{ subCourseData.createdAt | date: "shortDate" }} | View: 6825
     </p>
+    <p>{{ subCourseData.description }}</p>
   </div>
   <div *ngIf="renderMaterial && renderMaterial.length > 0">
     <div *ngFor="let exercise of renderMaterial">

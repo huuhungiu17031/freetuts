@@ -9,7 +9,7 @@ import { CourseService } from '../../services/course.service';
 import { TransferDataService } from 'src/app/services/transfer-data.service';
 import { SweetAlertService } from 'src/app/services/sweet-alert.service';
 import { CommentService } from 'src/app/services/comment.service';
-
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-update-post',
@@ -31,6 +31,7 @@ export class UpdatePostComponent implements OnInit {
     private courseService: CourseService,
     private transferDataService: TransferDataService,
     private sweetAlertService: SweetAlertService,
+    private route: Router
   ) {
   }
 
@@ -78,9 +79,10 @@ export class UpdatePostComponent implements OnInit {
     // console.log(currentPost)
     this.postService.updatePost(payload).subscribe(res => {
       console.log(res)
-      this.sweetAlertService.successBox(res)
-      // localStorage.clear()
-      this.transferDataService.navigate('admin/listPost');
+      this.sweetAlertService.successBox(`Update successfully ${res['data'].title}`)
+      localStorage.removeItem('currentPost')
+      // this.transferDataService.navigate('/admin/listPost');
+      this.route.navigate([`/admin/listPost`])
     })
   }
 

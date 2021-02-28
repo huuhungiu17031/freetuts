@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from '../../services/posts.service';
 import { TransferDataService } from 'src/app/services/transfer-data.service';
+import { Router } from '@angular/router'
 import { SweetAlertService } from '../../services/sweet-alert.service';
 @Component({
   selector: 'app-list-post',
@@ -16,6 +17,7 @@ export class ListPostComponent implements OnInit {
     private postService: PostsService,
     private transferDataService: TransferDataService,
     private sweetAlertService: SweetAlertService,
+    private route: Router
   ) { }
 
   ngOnInit(): void {
@@ -64,6 +66,7 @@ export class ListPostComponent implements OnInit {
     //send post to the update component and save to local storage
     this.postService.tranferPost(post)
     //navigate
-    this.transferDataService.navigate('admin/updatePost', post._id)
+    this.route.navigate([`/admin/updatePost/${post._id}`])
+    // this.transferDataService.navigate('admin/updatePost', post._id)
   }
 }

@@ -21,6 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { ShareModule } from '../share/share.module';
+import { AuthGuardService } from '../services/auth-guard.service';
+import { NavComponent } from './nav/nav.component';
 const adminComponent = [
   AdminLayoutComponent,
   AdminHomeComponent,
@@ -31,25 +33,26 @@ const adminComponent = [
   UpdatePostComponent,
   CommentDetailComponent,
   PaginationComponent,
+  NavComponent,
 
 ]
 const adminRoutes: Routes = [
   {
-    path: 'admin', component: AdminLayoutComponent, data: { breadcrumb: 'Admin' }, children: [
+    path: '', component: AdminLayoutComponent, children: [
       {
-        path: 'login', component: AdminLoginComponent, data: { breadcrumb: 'Login' }
+        path: 'login', component: AdminLoginComponent
       },
       {
-        path: 'createCategory', component: CreateCategoryComponent, data: { breadcrumb: 'Create Category' }
+        path: 'createCategory', component: CreateCategoryComponent, canActivate: [AuthGuardService]
       },
       {
-        path: 'post', component: CreatePostComponent, data: { breadcrumb: 'Create Post' }
+        path: 'post', component: CreatePostComponent, canActivate: [AuthGuardService]
       },
       {
-        path: 'listPost', component: ListPostComponent, data: { breadcrumb: 'DASHBOARD OF POST' }
+        path: 'listPost', component: ListPostComponent, canActivate: [AuthGuardService]
       },
       {
-        path: 'updatePost/:id', component: UpdatePostComponent, data: { breadcrumb: 'UPDATE POST' }
+        path: 'updatePost/:id', component: UpdatePostComponent, canActivate: [AuthGuardService]
       }
     ]
   },
@@ -71,4 +74,4 @@ const adminRoutes: Routes = [
   ],
   exports: [adminComponent],
 })
-export class AdminModule {}
+export class AdminModule { }

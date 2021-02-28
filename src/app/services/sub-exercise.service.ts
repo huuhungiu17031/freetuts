@@ -22,7 +22,7 @@ export class SubExerciseService {
 
   sendDataToSideNav(data) {
     this.stateDataSideBar.next(data);
-    
+
   }
 
   sendStateToSideBar(state: boolean) {
@@ -40,4 +40,11 @@ export class SubExerciseService {
       return response
     }))
   }
+
+  getSubExerciseWithPagination(URL?: string): Observable<any[]> {
+    return this.http.get<any>(SUB_EXERCISE_URL + `/${URL}`).pipe(map(res => {
+      return res
+    }))
+  }
+
 }

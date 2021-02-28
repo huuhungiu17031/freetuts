@@ -34,6 +34,8 @@ import { CommentService } from './services/comment.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CourseDetailService } from './services/course-detail.service';
 import { SubExerciseService } from './services/sub-exercise.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthLoginService } from './services/auth-login.service';
 const Services = [
   MetadataService,
   SubService,
@@ -45,7 +47,9 @@ const Services = [
   CommentService,
   SweetAlertService,
   CourseDetailService,
-  SubExerciseService
+  SubExerciseService,
+  AuthGuardService,
+  AuthLoginService
 ]
 @NgModule({
   declarations: [

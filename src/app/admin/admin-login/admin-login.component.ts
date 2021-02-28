@@ -1,6 +1,9 @@
+import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { SweetAlertService } from 'src/app/services/sweet-alert.service';
+import { TransferDataService } from 'src/app/services/transfer-data.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-admin-login',
   templateUrl: './admin-login.component.html',
@@ -10,7 +13,10 @@ export class AdminLoginComponent implements OnInit {
   username: string;
   password: string;
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private sweetAlertService: SweetAlertService,
+    private transferDataService: TransferDataService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -21,9 +27,13 @@ export class AdminLoginComponent implements OnInit {
       "password": this.password
     }
     this.authService.login('login', account).subscribe(res => {
-      console.log(res);
-      console.log(account)
-      if (res.token) this.authService.setCookie('token', res.token, 1);
-    });
+      this.sweetAlertService.successBox(res['message'])
+      localStorage.setItem('current_user', JSON.stringify(res['data']));
+      // this.transferDataService.navigate('/admin/listPost')
+      this.authService.sendCurrentUser(res['data'])
+      this.router.navigate(['/admin/listPost/'])
+    },
+
+    );
   }
 }

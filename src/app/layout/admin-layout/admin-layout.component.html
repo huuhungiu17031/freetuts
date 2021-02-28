@@ -1,15 +1,5 @@
-<div class="container">
-  <breadcrumb #parent>
-    <ol class="breadcrumb">
-      <ng-template ngFor let-route [ngForOf]="parent.breadcrumbs">
-        <li *ngIf="!route.terminal" class="breadcrumb-item">
-          <a href="" [routerLink]="[route.url]">{{ route.displayName }}</a>
-        </li>
-        <li *ngIf="route.terminal" class="breadcrumb-item active">
-          {{ route.displayName }}
-        </li>
-      </ng-template>
-    </ol>
-  </breadcrumb>
+<app-nav></app-nav>
+<div class="container mt-5">
+  <!-- <h1 *ngIf="isAdmin">Welcome {{ isAdmin.username }}</h1> -->
   <router-outlet></router-outlet>
 </div>

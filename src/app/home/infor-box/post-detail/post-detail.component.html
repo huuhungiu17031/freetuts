@@ -5,7 +5,10 @@
       (click)="navigate(leftContent._id, leftContent.subModelID)"
     >
       <img [src]="leftContent.imageURL" [alt]="leftContent._id" />
-      <h2>{{ leftContent.title }}</h2>
+      <h2>
+        {{ leftContent.title }}
+        <span *ngIf="leftContent.comment.length > 10">HOT</span>
+      </h2>
       <p [innerHTML]="leftContent.description | summary"></p>
     </div>
   </div>
@@ -17,7 +20,9 @@
         *ngFor="let item of rightContent"
       >
         <img class="right-img" [src]="item.imageURL" [alt]="item._id" />
-        <p [innerHTML]="item.description | summary"></p>
+        <p [innerHTML]="item.description | summary">
+          <span *ngIf="item.comment.length > 10">HOT</span>
+        </p>
       </div>
     </div>
   </div>

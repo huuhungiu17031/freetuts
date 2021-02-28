@@ -3,7 +3,31 @@ let route = express.Router();
 let { EXERCISE_MODEL } = require('../models/exercise');
 let { SUB_EXERCISE_MODEL } = require('../models/subExercise')
 
-//ADD POST AND UPDATE POSTS ARRAY IN COURSE MODEL
+const PAGE_SIZE = 15;
+
+
+route.get('/list', async(req, res) => {
+        try {
+            let page = req.query.page
+            if (page) {
+                //Get page
+                page = parseInt(page);
+                var skip = (page - 1) * PAGE_SIZE;
+                let list = await SUB_EXERCISE_MODEL
+                    .find({})
+                    .skip(skip)
+                    .limit(PAGE_SIZE)
+                res.json({ error: false, data: list })
+
+            } else {
+                let list = await SUB_EXERCISE_MODEL.find({})
+                res.json({ error: false, data: list })
+            }
+        } catch (error) {
+            res.json({ error: true, message: error.message })
+        }
+    })
+    //ADD POST AND UPDATE POSTS ARRAY IN COURSE MODEL
 route.post('/add', async(req, res) => {
     try {
         let { title, description, exerciseModelId, video } = req.body;
