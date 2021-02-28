@@ -64,7 +64,11 @@ route.post('/add', async(req, res) => {
         //CHECK THE CATEGORY ID
         if (!ObjectID.isValid(postModelID))
             res.json({ error: true, message: 'param_invalid_category_id' });
-
+        console.log(commentInfo);
+        if (commentInfo.imageURL === '') {
+            commentInfo.imageURL = 'https://lh3.googleusercontent.com/proxy/VgEOTRQiXgoP-mfNIQ3OmcT6zjkYog6fj63BWbnJtXwCf7VkzSlgiBPaHlTZ4CloEdKsKoIneW1rjZcpetWPW1l9xNcMEGlkgPrMf8DrCXjbCGS6GENK1uiJq7cjvNZ5f1GNj2jg5QyKnIFM'
+        }
+        console.log(commentInfo);
         //SAVE COMMENT TO THE DATABASE
         let commentAfterInserted = await commentInfo.save();
         if (!commentAfterInserted) res.json({ error: true, message: 'Cannot comment the post' })
@@ -74,7 +78,7 @@ route.post('/add', async(req, res) => {
         //FINDING THE SPECIFIC ID AND PUSH COMMENT TO THE POST
         let pushCommentToPost = await POST_MODEL.findOneAndUpdate({ _id: postModelID }, { $push: { comment: commentID } });
         if (!pushCommentToPost) res.json({ error: true, message: 'cannot_update_course' });
-        console.log(pushCommentToPost);
+
 
         res.json({ error: false, data: commentAfterInserted, message: 'Add successfully!' })
     } catch (error) {
