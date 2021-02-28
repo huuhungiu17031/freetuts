@@ -31,6 +31,7 @@ export class AuthService {
     })
     )
   }
+    
   sendCurrentUser(data) {
     this.currentUserSubject.next(data)
   }

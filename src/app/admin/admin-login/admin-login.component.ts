@@ -15,7 +15,6 @@ export class AdminLoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private sweetAlertService: SweetAlertService,
-    private transferDataService: TransferDataService,
     private router: Router
   ) { }
 
@@ -29,7 +28,6 @@ export class AdminLoginComponent implements OnInit {
     this.authService.login('login', account).subscribe(res => {
       this.sweetAlertService.successBox(res['message'])
       localStorage.setItem('current_user', JSON.stringify(res['data']));
-      // this.transferDataService.navigate('/admin/listPost')
       this.authService.sendCurrentUser(res['data'])
       this.router.navigate(['/admin/listPost/'])
     },
