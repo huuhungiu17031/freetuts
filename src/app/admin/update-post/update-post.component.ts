@@ -7,7 +7,9 @@ import { PostsService } from '../../services/posts.service';
 import { SubService } from '../../services/sub.service';
 import { CourseService } from '../../services/course.service';
 import { TransferDataService } from 'src/app/services/transfer-data.service';
-import { DatePipe } from '@angular/common'
+import { SweetAlertService } from 'src/app/services/sweet-alert.service';
+import { CommentService } from 'src/app/services/comment.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-update-post',
@@ -28,17 +30,19 @@ export class UpdatePostComponent implements OnInit {
     private subService: SubService,
     private courseService: CourseService,
     private transferDataService: TransferDataService,
-    private datepipe: DatePipe
+    private sweetAlertService: SweetAlertService,
+    private route: Router
   ) {
   }
 
   ngOnInit(): void {
     //get post from listpostComponent
     this.form(this.postService.currentUserValue)
-
     this.getAllSub()
     this.getCourses()
   }
+
+
 
 
   form(data) {
@@ -74,8 +78,11 @@ export class UpdatePostComponent implements OnInit {
     let payload = this.myForm.value;
     // console.log(currentPost)
     this.postService.updatePost(payload).subscribe(res => {
-      localStorage.clear()
-      this.transferDataService.navigate('listPost');
+      console.log(res)
+      this.sweetAlertService.successBox(`Update successfully ${res['data'].title}`)
+      localStorage.removeItem('currentPost')
+      // this.transferDataService.navigate('/admin/listPost');
+      this.route.navigate([`/admin/listPost`])
     })
   }
 

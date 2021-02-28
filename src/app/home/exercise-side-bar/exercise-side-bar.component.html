@@ -1,0 +1,20 @@
+<div class="border">
+  <p class="bg-1 padding-cuz text-white">Danh sách bài học</p>
+  <div *ngIf="data">
+    <div *ngFor="let item of data">
+      <div class="padding-cuz bg text-color">{{ item.title }}</div>
+      <ul
+        class="list-exercise"
+        *ngIf="item.subExercise && item.subExercise.length > 0"
+      >
+        <li
+          class="padding-cuz"
+          (click)="navigate(ex._id)"
+          *ngFor="let ex of item.subExercise"
+        >
+          {{ ex.title }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

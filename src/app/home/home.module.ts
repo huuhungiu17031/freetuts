@@ -29,10 +29,13 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { BreadcrumbModule } from 'angular-crumbs';
 
 import { CarouselModule } from 'ngx-owl-carousel-o';
-//Import pipes
-import { SummaryPipe } from '../pipes/summary.pipe';
-import { ShortcutPipe } from '../pipes/shortcut.pipe';
+
 import { FreeCodeComponent } from './free-code/free-code.component';
+import { ShareModule } from '../share/share.module';
+import { SpecialComponent } from './sub/special/special.component';
+import { SubCourseComponent } from './sub-course/sub-course.component';
+import { ExerciseComponent } from './exercise/exercise.component';
+import { ExerciseSideBarComponent } from './exercise-side-bar/exercise-side-bar.component';
 
 const homeComponents = [
   HeaderComponent,
@@ -54,6 +57,10 @@ const homeComponents = [
   NoContentComponent,
   SpecifiedPostComponent,
   FreeCodeComponent,
+  SpecialComponent,
+  SubCourseComponent,
+  ExerciseComponent,
+  ExerciseSideBarComponent,
 ];
 
 const homeRoutes: Routes = [
@@ -75,20 +82,25 @@ const homeRoutes: Routes = [
             component: CourseDetailComponent,
           },
           {
-            path: 'post/:postID',
-            component: SpecifiedPostComponent,
+            path: 'post/:postID', component: SpecifiedPostComponent
           },
-        ],
+          {
+            path: 'subCourse/:courseID', component: SubCourseComponent
+          }
+        ]
       },
-    ],
-  },
-];
+      {
+        path: 'exercise/:id', component: ExerciseComponent
+      }
+    ]
+  }
+]
+
 @NgModule({
   declarations: [
     homeComponents,
     HeadingContainerDirective,
-    SummaryPipe,
-    ShortcutPipe,
+
   ],
   imports: [
     CommonModule,
@@ -98,6 +110,7 @@ const homeRoutes: Routes = [
     CKEditorModule,
     ReactiveFormsModule,
     CarouselModule,
+    ShareModule
   ],
 
   exports: [homeComponents],

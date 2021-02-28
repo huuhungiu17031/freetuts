@@ -1,0 +1,46 @@
+<mat-accordion *ngIf="comment && comment.length > 0; else noContentTemplate">
+  <h1 class="text-uppercase">Comments</h1>
+  <mat-expansion-panel
+    class="my-4 px-2"
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+    *ngFor="let cmt of comment"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{ cmt.email }}</mat-panel-title>
+      <mat-panel-description>
+        <p>{{ cmt.name }}</p>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="wrapper">
+      <div class="left">
+        <p>Trạng thái: {{ cmt.isActive ? "Đã đăng" : "Chưa đăng" }}</p>
+        <p>Đã duyệt lúc {{ cmt.updatedAt | date: "medium" }}</p>
+        <p [innerHTML]="cmt.comment"></p>
+        <button
+          class="btn btn-primary mr-1"
+          [disabled]="cmt.isActive"
+          (click)="show(cmt)"
+        >
+          SHOW
+        </button>
+        <button
+          class="btn btn-warning mx-1"
+          [disabled]="!cmt.isActive"
+          (click)="hide(cmt)"
+        >
+          HIDE
+        </button>
+        <button class="btn btn-danger mx-1" (click)="delete(cmt)">
+          DELETE
+        </button>
+      </div>
+      <div class="right">
+        <img class="avatar" [src]="cmt.imageURL" alt="" />
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+<ng-template #noContentTemplate>
+  <h1>There is nothing to display</h1>
+</ng-template>

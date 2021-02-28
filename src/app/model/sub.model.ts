@@ -7,7 +7,8 @@ export class SubDetail {
     description: String;
     category: String;
     courses: CourseDetail[];
-    posts: PostDetail[]
+    posts: PostDetail[];
+    courseDetail: [];
     constructor(obj?: any) {
         this.id = obj && obj.id || null;
         this.title = obj && obj.title || null;
@@ -15,5 +16,6 @@ export class SubDetail {
         this.category = obj && obj.category || null;
         this.courses = obj && obj.courses || null;
         this.posts = obj && obj.posts || null;
+        this.courseDetail = obj && obj.courseDetail || null;
     }
 }

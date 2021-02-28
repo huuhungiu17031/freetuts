@@ -1,0 +1,56 @@
+<div *ngIf="renderMaterial" class="exercise-wrapper border padding-cuz">
+  <h1>{{ renderMaterial.title }}</h1>
+  <p *ngIf="renderMaterial.createdAt">
+    Đăng bởi: Administrator- Vào ngày:
+    {{ renderMaterial.createdAt | date: "mediumDate" }}
+  </p>
+  <!-- <iframe width="420" height="345" [src]="videoURL"> </iframe> -->
+  <p [innerHTML]="renderMaterial.description"></p>
+</div>
+
+<form class="padding-cuz border mt-4" action="" [formGroup]="myForm" (ngSubmit)="save()">
+  <div class="form-group">
+    <ckeditor
+      formControlName="comment"
+      [editor]="Editor"
+      [config]="{
+        toolbar: [
+          'heading',
+          '|',
+          'bold',
+          'italic',
+          'link',
+          'bulletedList',
+          'numberedList',
+          'blockQuote',
+          'fontSize'
+        ]
+      }"
+    ></ckeditor>
+  </div>
+  <div class="form-group">
+    <input
+      formControlName="name"
+      type="text"
+      class="form-element"
+      placeholder="Name (required)"
+    />
+    <input
+      formControlName="email"
+      type="text"
+      class="form-element"
+      placeholder="Email (required)"
+    />
+    <input
+      formControlName="imageURL"
+      type="text"
+      class="form-element"
+      placeholder="avatarURL"
+    />
+  </div>
+  <div class="form-group text-center">
+    <button class="submit-btn" [disabled]="!myForm.valid" type="submit">
+      Đăng bình luận
+    </button>
+  </div>
+</form>

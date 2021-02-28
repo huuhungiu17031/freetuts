@@ -18,6 +18,7 @@ export class PostDetailComponent implements OnInit {
     let copyContent = [...this.item]
     this.leftContent = copyContent.shift();
     this.rightContent = copyContent;
+    console.log(this.item)
   }
 
 

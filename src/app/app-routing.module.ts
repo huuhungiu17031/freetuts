@@ -3,8 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 // import { CourseDetailComponent } from './components/course-detail/course-detail.component';
 // import { HomeComponent } from './components/home/home.component';
 // import { SubDetailComponent } from './components/sub-detail/sub-detail.component';
-import { HomeModule } from './home/home.module';
-import { AdminModule } from './admin/admin.module';
+// import { HomeModule } from './home/home.module';
+// import { AdminModule } from './admin/admin.module';
+// import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
 

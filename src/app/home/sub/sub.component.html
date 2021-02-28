@@ -5,19 +5,13 @@
       else newTemplate
     "
   >
-    <h4>{{ data.title }}</h4>
-    <p>Đăng bởi Administrator | Vào ngày 04-08-2019</p>
-    <p>{{ data.description }}</p>
-    <div *ngFor="let item of data.courses">
-      <h4>{{ item.title }}</h4>
-      <div class="table"></div>
-    </div>
+    <app-special [data]="data"></app-special>
   </div>
 
   <ng-template #newTemplate>
     <div class="title" *ngIf="data">
       <h1>{{ data.title }}</h1>
-      <p>{{ data.description }}</p>
+      <p [innerHTML]="data.description"></p>
     </div>
     <div *ngIf="posts.length > 0; else noContentTemplate">
       <div class="widget-head">

@@ -20,23 +20,59 @@
 
 .cmt-detail {
   border: 1px solid rgb(224, 224, 224);
-  padding: 10px;
+  padding: 20px;
   margin: 10px 0;
-  border-radius: 5px;
-  background-color: #ededed;
+  // border-radius: 5px;
+  // background-color: #fcf8e8;
+}
+.wrapper-flex {
+  display: flex;
+  justify-content: space-between;
+}
+.response {
+  border: 1px solid #e5e5e5;
+  margin: 0 1px 0 0;
+  padding: 0 12px 0 12px;
+  color: #83868a;
+}
+.img-cus {
+  width: 90px;
+  height: 90px;
+  border: 1px solid #E5E5E5;
 }
 .username {
-  color: #03506f;
-  text-transform: capitalize;
-  margin-right: 7px;
-  font-weight: bold;
-  font-size: 16px;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+.count {
+  color: #c1c1c1;
+}
+.like {
+  color: #f09217;
+}
+.timestamps {
+  color: #c6c6c6;
+  height: 15px;
+  font-size: 12px;
 }
 
-.timestamps {
-  color: rgb(122, 122, 122);
-  text-transform: capitalize;
-  margin-right: 10px;
-  padding: 0 5px;
-  font-size: 12px;
+.form-element {
+  height: 40px;
+  width: 250px;
+  border: 1px solid #eaeaea;
+  margin: 0 11px 20px 0;
+  padding: 0 8px 0 8px;
+  background-color: #f8f8f8;
+}
+
+.submit-btn {
+  height: 40px;
+  width: 150px;
+  padding: 0 17px 0 17px;
+  background-color: #4d525d;
+  color: white;
+  border: 0px solid #ffffff;
+}
+.comment-content {
+  font-size: 17px;
 }

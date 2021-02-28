@@ -4,16 +4,25 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   providedIn: 'root',
 })
 export class SweetAlertService {
-  constructor() {}
 
-  successBox(data) {
+  constructor() { }
+
+  error(message) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: message,
+    })
+  }
+
+  successBox(message) {
     Swal.fire({
       position: 'center',
       icon: 'success',
-      title: `${data.title} has been saved`,
+      title: message,
       showConfirmButton: false,
-      timer: 1500,
-    });
+      timer: 2500
+    })
   }
   confirmBox(fn) {
     Swal.fire({
@@ -22,18 +31,23 @@ export class SweetAlertService {
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it',
-    }).then((result) => {
-      if (result.value) {
-        fn;
-        Swal.fire(
-          'Deleted!',
-          'Your imaginary file has been deleted.',
-          'success'
-        );
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelled', 'Your imaginary file is safe :)', 'error');
-      }
-    });
+      cancelButtonText: 'No, keep it'
+    })
+      .then((result) => {
+        if (result.value) {
+          fn
+          Swal.fire(
+            'Deleted!',
+            'Your imaginary file has been deleted.',
+            'success'
+          )
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire(
+            'Cancelled',
+            'Your imaginary file is safe :)',
+            'error'
+          )
+        }
+      })
   }
 }

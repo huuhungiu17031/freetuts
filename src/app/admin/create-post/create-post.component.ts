@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 
 //Import FormBuilder
 import { FormBuilder, FormGroup } from '@angular/forms'
@@ -54,26 +53,18 @@ export class CreatePostComponent implements OnInit {
       courseModelID: '',
       subModelID: ''
     })
-    this.myForm.valueChanges.subscribe(
-      (data) => {
-        this.formValues = data;
-        if (data.subModelID) {
-          this.getCourses(data.subModelID)
-        }
-      }
-    )
+    
   }
 
   save() {
     this.postService.submitPost(this.myForm.value).subscribe(data => {
-      console.log(data)
-      this.sweetAlertService.successBox(data);
+      this.sweetAlertService.successBox(data['title']);
     })
   }
 
-  onChange({ editor }: ChangeEvent) {
-    const data = editor.getData();
-    console.log(data);
-  }
+ 
+  subModelChange(e) {
+    this.getCourses(e.target.value)
 
+  }
 }

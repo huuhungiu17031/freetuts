@@ -1,4 +1,9 @@
-<table class="table table-striped text-center">
+<div *ngIf="flag" class="form-group">
+  <label>Filter</label>
+  <input type="" (keyup)="fliter($event)" />
+</div>
+
+<table class="table table-striped">
   <thead>
     <tr class="">
       <th scope="col">_Id</th>
@@ -10,7 +15,7 @@
   <tbody *ngIf="tableData && tableData.length > 0; else noContentTemplate">
     <tr *ngFor="let item of tableData">
       <th scope="row">{{ item._id }}</th>
-      <td>{{ item.title }}</td>
+      <td class="w-half">{{ item.title | summary: 60 }}</td>
       <td>{{ item.createAt | date: "short" }}</td>
       <td>
         <button class="btn btn-primary" (click)="updateAndNavigate(item)">
@@ -24,7 +29,18 @@
     </tr>
   </tbody>
 </table>
-<app-pagination (newItemEvent)="paginationEvent($event)"></app-pagination>
+<div class="form-group">
+  <label class="mr-2">ALL POSTS</label>
+  <input
+    type="checkbox"
+    (change)="checkBoxValue($event)"
+    aria-label="Checkbox for following text input"
+  />
+</div>
+<app-pagination
+  (newItemEvent)="paginationEvent($event)"
+  *ngIf="!flag"
+></app-pagination>
 <ng-template #noContentTemplate>
   <h1 class="mt-5">There is nothing to display !</h1>
 </ng-template>

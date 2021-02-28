@@ -16,9 +16,15 @@ let commentSchema = new Schema({
         required: true,
         trim: true,
     },
+    isActive: {
+        type: Boolean,
+    },
     postModelID: {
         type: Schema.Types.ObjectId,
         ref: 'posts'
+    },
+    imageURL: {
+        type: String
     }
 }, { timestamps: true })
 

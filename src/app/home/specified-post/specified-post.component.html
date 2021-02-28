@@ -15,31 +15,69 @@
   <div>
     <div class="cmt" *ngIf="commentList && commentList.length > 0">
       <div class="cmt-detail" *ngFor="let cmt of commentList">
-        <p>
-          <span class="username">{{ cmt.name }} </span>
-          <span class="timestamps"
-            ><i class="far fa-clock align-baseline"></i>
-            {{ cmt.createdAt | date: "mediumDate" }}</span
-          >
-        </p>
-        <h5 class="comment-content" [innerHTML]="cmt.comment"></h5>
+        <div class="row">
+          <div class="col-2 text-center">
+            <img class="img-cus" [src]="cmt.imageURL" [alt]="cmt._id" />
+          </div>
+          <div class="col-10">
+            <div class="wrapper-flex">
+              <div class="left">
+                <p class="username">{{ cmt.name }}</p>
+                <p class="timestamps">{{ cmt.updatedAt | date: "medium" }}</p>
+              </div>
+              <div class="right"><span class="like">Like:</span><span class="count">0</span></div>
+            </div>
+            <p class="comment-content" [innerHTML]="cmt.comment"></p>
+            <button class='response'>Phản hồi</button>
+          </div>
+        </div>
       </div>
     </div>
-    <ckeditor
-      [editor]="Editor"
-      [config]="{
-        toolbar: [
-          'heading',
-          '|',
-          'bold',
-          'italic',
-          'link',
-          'bulletedList',
-          'numberedList',
-          'blockQuote',
-          'fontSize'
-        ]
-      }"
-    ></ckeditor>
+    <form action="" [formGroup]="myForm" (ngSubmit)="save()">
+      <div class="form-group">
+        <ckeditor
+          formControlName="comment"
+          [editor]="Editor"
+          [config]="{
+            toolbar: [
+              'heading',
+              '|',
+              'bold',
+              'italic',
+              'link',
+              'bulletedList',
+              'numberedList',
+              'blockQuote',
+              'fontSize'
+            ]
+          }"
+        ></ckeditor>
+      </div>
+      <div class="form-group">
+        <input
+          formControlName="name"
+          type="text"
+          class="form-element"
+          placeholder="Name (required)"
+        />
+        <input
+          formControlName="email"
+          type="text"
+          class="form-element"
+          placeholder="Email (required)"
+        />
+        <input
+          formControlName="imageURL"
+          type="text"
+          class="form-element"
+          placeholder="avatarURL"
+        />
+      </div>
+      <div class="form-group text-center">
+        <button class="submit-btn" [disabled]="!myForm.valid" type="submit">
+          Đăng bình luận
+        </button>
+      </div>
+    </form>
   </div>
 </div>

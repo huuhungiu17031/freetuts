@@ -2,7 +2,7 @@
   <div class="title">
     <h2>{{ course.title }}</h2>
     <p>Đăng bởi: Administrator | Vào ngày: 19-12-2016</p>
-    <p>{{ course.description }}</p>
+    <p [innerHTML]="course.description"></p>
   </div>
 
   <div *ngIf="posts.length > 0; else noContentTemplate">

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { TransferDataService } from 'src/app/services/transfer-data.service';
 
 @Component({
   selector: 'app-admin-layout',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit {
-
-  constructor() { }
+  constructor(
+   
+  ) { }
 
   ngOnInit(): void {
+    // const flag = this.getData()
+    // this.isAdmin = flag
   }
-
+  // getData() {
+  //   return this.isAdmin = this.authService.currentUserValue
+  // }
+  // logout() {
+  //   this.authService.logout()
+  //   this.transferDataService.navigate('/admin/login')
+  // }
 }

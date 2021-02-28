@@ -27,7 +27,15 @@ import { DatePipe } from '@angular/common';
 import { SweetAlertService } from './services/sweet-alert.service';
 //Import owl module
 import { OwlModule } from 'ngx-owl-carousel';
-import { DateFormatPipe } from './pipes/date-format.pipe';  
+import { DateFormatPipe } from './pipes/date-format.pipe';
+// import { ShareModule } from './share/share.module';
+// import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CommentService } from './services/comment.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CourseDetailService } from './services/course-detail.service';
+import { SubExerciseService } from './services/sub-exercise.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthLoginService } from './services/auth-login.service';
 const Services = [
   MetadataService,
   SubService,
@@ -36,12 +44,18 @@ const Services = [
   TransferDataService,
   PostsService,
   AuthService,
-  SweetAlertService
+  CommentService,
+  SweetAlertService,
+  CourseDetailService,
+  SubExerciseService,
+  AuthGuardService,
+  AuthLoginService
 ]
 @NgModule({
   declarations: [
     AppComponent,
     DateFormatPipe,
+    // PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +68,9 @@ const Services = [
     CKEditorModule,
     QuillModule,
     BreadcrumbModule,
-    OwlModule
+    OwlModule,
+    BrowserAnimationsModule,
+    // ShareModule
   ],
   providers: [
     Services,
